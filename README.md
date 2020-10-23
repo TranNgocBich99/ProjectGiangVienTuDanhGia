@@ -29,7 +29,6 @@
   <ul>Cài đặt SublimeText3 </ul>
   <ul>Cài đặt Xampp </ul>
   <ul>Hướng dẫn sử dụng
-  <li></li>
   <li>Quản trị viên: Quản lý tài khoản giảng viên: thêm, sửa, xóa tìm kiếm tài khoản giảng viên, nhận xét (không được thêm, sửa, xóa điểm), tra cứu và đối sánh kết quả đánh giá giữa các năm</li>
   <li>Giảng viên: Đăng nhập, đăng xuất tài khoản, sửa thông tin tài khoản, nhập thông tin cá nhân: họ và tên, học vị và chức danh, khoa/bộ môn, trình độ ngoại ngữ, giảng viên tự đánh giá chất lượng các nhiệm vụ đã thực hiện trong năm học bằng
 cách tích vào Thang đánh giá gồm 5 mức: Rất không tốt, Bình thường, Tốt, Rất tốt
