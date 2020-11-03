@@ -20,10 +20,10 @@ Route::get('dangki',['as'=>'getDangki','uses'=>'RegisterController@getDangki']);
 Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 Route::group(['prefix'=>'admin'],function(){
-	
+
 	//-------------------------------------------User------------------------------------------
 	Route::group(['prefix'=>'user'],function(){
-		
+
 			Route::get('/',['as'=>'admin.user.getList','uses'=>'UserController@getList']);
 			Route::get('list',['as'=>'admin.user.getList','uses'=>'UserController@getList']);
 			Route::get('add',['as'=>'admin.user.add','uses'=>'UserController@getAdd']);
@@ -32,9 +32,9 @@ Route::group(['prefix'=>'admin'],function(){
 			Route::get('edit/{id}',['as'=>'admin.user.edit','uses'=>'UserController@getEdit']);
 			Route::post('edit/{id}',['as'=>'admin.user.postEdit','uses'=>'UserController@postEdit']);
 			Route::post('edit/{id}',['as'=>'admin.user.postEdit','uses'=>'UserController@postEdit']);
-			
+
 	});
-	
+
 	//-------------------------------------------School------------------------------------------
 	Route::group(['prefix'=>'school'],function(){
 			Route::get('/',['as'=>'admin.school.getList','uses'=>'SchoolController@getList']);
@@ -45,12 +45,16 @@ Route::group(['prefix'=>'admin'],function(){
 			Route::get('edit/{id}',['as'=>'admin.school.edit','uses'=>'SchoolController@getEdit']);
 			Route::post('edit/{id}',['as'=>'admin.school.postEdit','uses'=>'SchoolController@postEdit']);
 	});
-	
+
 	//-------------------------------------------Science------------------------------------------
 	Route::group(['prefix'=>'science'],function(){
 		Route::get('ajax_get_science','ScienceController@ajax_get_science')->name('ajax_get_science');
 	});
-	
-	
+
+    //statistic
+
+    Route::group(['prefix'=>'statistic'],function(){
+        Route::get('/', 'StatisticController@index');
+    });
 });
 
