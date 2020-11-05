@@ -1,0 +1,78 @@
+*{margin:0;padding:0; }
+ 
+  
+  /* Style the search field */
+  form.example input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    width: 50%;
+    height: 10%;
+    border-radius: 3px;
+    background: #f1f1f1;
+    margin-left: 180px;
+  }
+  
+  /* Style the submit button */
+  form.example button {
+    float: left;
+    width: 10%;
+    height: 43px!important;
+    padding: 10px;
+    border-radius: 3px;
+    background: #007f49;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none; /* Prevent double borders */
+    cursor: pointer;
+  }
+  
+  form.example button:hover {
+    background:#007f49;
+  }
+  
+  /* Clear floats */
+  form.example::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  .logout a, .login a {
+    padding-right: 10px; 
+    cursor: pointer; 
+    color: black; 
+    text-decoration: none;
+  }
+  .co .title {
+    padding-right: 10px; 
+    cursor: pointer; 
+    color: #007f49; 
+    text-decoration: none;
+    font-family: Arial;
+    font-size: 13px;
+    font-weight: bold;
+  }
+  div .title2 {
+    padding-right: 10px; 
+    cursor: pointer; 
+    color: black; 
+    text-decoration: none;
+    font-family: Arial;
+    font-size: 13px;
+    font-weight: bold;
+  }
+  li .link{
+    padding-right: 10px; 
+    cursor: pointer; 
+    color: gray; 
+    text-decoration: none;
+    font-family: Arial;
+    font-size: 13px;
+    font-weight: bold; 
+    
+  }
+  li {
+    padding-bottom: 15px;
+  }
