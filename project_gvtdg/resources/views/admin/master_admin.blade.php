@@ -113,10 +113,10 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Tiêu chí đánh giá<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">Danh sách tiêu chí</a>
+                                    <a href="{{route('admin.evaluation.getList')}}">Danh sách tiêu chí</a>
                                 </li>
                                 <li>
-                                    <a href="#">Tạo tiêu chí</a>
+                                    <a href="{{route('admin.evaluation.add')}}">Tạo tiêu chí</a>
                                 </li>
                             </ul>
                         </li>

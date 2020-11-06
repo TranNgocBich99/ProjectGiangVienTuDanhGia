@@ -61,5 +61,19 @@ Route::group(['prefix'=>'admin','middleware' => ['can:admin']],function(){
     Route::group(['prefix'=>'statistic'],function(){
         Route::get('/', 'StatisticController@index');
     });
+
+
+    //-------------------------------------------Evaluation------------------------------------------
+	Route::group(['prefix'=>'evaluation'],function(){
+
+		Route::get('/',['as'=>'admin.evaluation.getList','uses'=>'EvaluationController@getList']);
+		Route::get('list',['as'=>'admin.evaluation.getList','uses'=>'EvaluationController@getList']);
+		Route::get('add',['as'=>'admin.evaluation.add','uses'=>'EvaluationController@getAdd']);
+		Route::post('add',['as'=>'admin.evaluation.postAdd','uses'=>'EvaluationController@postAdd']);
+		Route::get('delete/{id}',['as'=>'admin.evaluation.delete','uses'=>'EvaluationController@getDelete']);
+		Route::get('edit/{id}',['as'=>'admin.evaluation.edit','uses'=>'EvaluationController@getEdit']);
+		Route::post('edit/{id}',['as'=>'admin.evaluation.postEdit','uses'=>'EvaluationController@postEdit']);
+		Route::post('edit/{id}',['as'=>'admin.evaluation.postEdit','uses'=>'EvaluationController@postEdit']);
+	});
 });
 
