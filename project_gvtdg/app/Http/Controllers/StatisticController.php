@@ -17,7 +17,9 @@ class StatisticController extends Controller
         $totalUser = count($user);
         $status = count($this->model->status());
         $ratio = $status/$totalUser;
-        return view('admin.statistic.list', compact('totalUser', 'status', 'ratio'));
+        $point = $this->model->averageScore();
+        $a = $this->model->getPoint();
+        return view('admin.statistic.list', compact('totalUser', 'status', 'ratio', 'point'));
     }
 
 }
