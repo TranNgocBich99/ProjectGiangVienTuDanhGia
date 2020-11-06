@@ -64,8 +64,8 @@
                                 <button type="submit" class="btn btn-primary" style = "margin-right: 20px;">
                                     {{ __('Đăng nhập') }}
                                 </button>
-								<button type="button" class="btn btn-default" style = "margin-right: 20px;" onclick = "click_cancel()">
-									{{ __('Thoát') }}
+								<button type="button" class="btn btn-default" style = "margin-right: 20px;" onclick = "click_dang_ky()">
+									{{ __('Đăng ký') }}
 								</button>
                             </div>
                         </div>
@@ -74,6 +74,10 @@
             </div>
         </div>
     </div>
-	
+	<script>
+		function click_dang_ky(){
+			window.location.href = "{{URL::route('getDangki')}}";
+		}
+	</script>
 </div>
 @endsection

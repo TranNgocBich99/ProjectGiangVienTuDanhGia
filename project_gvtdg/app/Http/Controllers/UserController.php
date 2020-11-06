@@ -36,11 +36,7 @@ class UserController extends Controller
 	
 	//add
 	public function getAdd(){
-		$school = new School;
-		$data = $school->GetAllSchool();
-		$listSchool = array();
-		$listSchool = $data;
-		return view('admin.user.add',compact('listSchool'));
+		return view('admin.user.add');
 	}
 	public function postAdd(Request $request){
 		$data = $request->all();
@@ -69,7 +65,6 @@ class UserController extends Controller
 			'passwordAgain.same' => 'Mật khẩu nhập lại không đúng'
 		]);
 		if($res_school == -1){
-			//echo "ssssssssssssssssssss";
 			$this->validate($request,[
 			
 				'school' => 'required',
@@ -89,7 +84,6 @@ class UserController extends Controller
 			
 		}
 		$user = new User;
-	//	$cus_img = '/uploads/customers'.$user->cus_img;
 		if($request->hasFile('avatar')){
 			$file = Input::file('avatar');
 			$filename =$file->getClientOriginalName();
@@ -104,7 +98,7 @@ class UserController extends Controller
 		}
 		$user->us_name = $data['name'];
 		$user->email = $data['email'];
-		$user->us_is_admin = $data['type'];   
+		$user->us_is_admin = $data['role'];   
 		$user->us_sci_id = $data['science'];   
 		$user->us_id_school = $data['school'];   
 		$user->password = bcrypt($data['password']);
@@ -113,14 +107,12 @@ class UserController extends Controller
 	}
 	//delete
 	public function getDelete($id){
-		//$this->authorize('admin');
 		user::destroy($id);
 		return redirect()->route('admin.user.getList')->with(['flash_level'=>'success','flash_message'=>'Xóa thành công']);
 	}
 	
 	//edit
 	public function getEdit($id){
-	//	$this->authorize('admin');
 		$user = DB::table('users')->where('users.us_id',$id)->select('users.*')->limit(1)->get();
 		if(count($user)==0){
 			return getList();
@@ -132,7 +124,6 @@ class UserController extends Controller
 	}
 	
 	public function postEdit($id,Request $request){
-	//	$this->authorize('admin');
 		$data = $request->all();
 	
 		$this->validate($request,[
@@ -149,7 +140,7 @@ class UserController extends Controller
 		$user = new user;
 		$user = user::find($id);
 		$user->us_name = $data['name'];
-		$user->us_is_admin = $data['type']; 
+		$user->us_is_admin = $data['role']; 
 		if($request->changePass == "on"){
 			$this->validate($request,[
 				

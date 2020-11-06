@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\School;
+use App\Science;
 use Illuminate\Support\Facades\View;
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,6 +28,5 @@ class AppServiceProvider extends ServiceProvider
     {
 		$school = new School;
 		View::share('listSchool',$school->GetAllSchool());
-
     }
 }

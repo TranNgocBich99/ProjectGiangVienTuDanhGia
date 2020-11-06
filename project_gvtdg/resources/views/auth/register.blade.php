@@ -96,7 +96,7 @@
                                 <button style = "margin-right:20px" type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
-								<a href = "http://xtech.com.vn/"  class = "cancel" style = "padding: 8px;border: 1px solid #ccc;border-radius: 3px;text-decoration: none !important;color: #000 !important;"> {{ __('Cancel') }}</a>
+								<a href = "/"  class = "cancel" style = "padding: 8px;border: 1px solid #ccc;border-radius: 3px;text-decoration: none !important;color: #000 !important;"> {{ __('Cancel') }}</a>
                             </div>
                         </div>
 				

@@ -36,7 +36,10 @@ class User extends Authenticatable
 	protected $primaryKey = 'us_id';
   
 	public function GetAllUsers(){
-		$data = DB::table($this->table)->get();
+		$data = DB::table('users')
+            ->join('school', 'users.us_id_school', '=', 'school.sch_id')
+            ->join('science', 'users.us_sci_id', '=', 'science.sci_id')
+            ->get();
 		return $data;
 	}
 

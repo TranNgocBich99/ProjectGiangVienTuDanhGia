@@ -4,8 +4,8 @@
 		<h1 class="page-header">Danh sách
 			<small>người dùng</small>
 			
-				<a title ="Thêm người dùng" href="{{route('admin.user.add')}}" style="float: right;color:#4ed7e4">
-					<button style = "color: #fff;background-color: #149c89;font-weight:bold" class="btn btn-default">Thêm mới người dùng</button>
+				<a title ="Thêm người dùng" href="{{route('admin.user.add')}}" style="float: right;color:#337ab7">
+					<i class="fas fa-plus-circle"></i>
 				</a>
 			
 		</h1>
@@ -17,7 +17,7 @@
 			<tr>
 			
 				<th >STT</th> 
-				<th >Ảnh đại diện</th>
+				<th >##</th>
 				<th >Tên người dùng</th>
 				<th >Email</th>
 				<th >Trường</th>
@@ -35,17 +35,17 @@
 				<td>{!! $stt !!}</td>
 				<td>
 					<div style="text-align: center;">
-						<img  class="mx-auto d-block" src="{{asset($item->us_avatar)}}" width="30%" height="30%"/>
+						<img  class="mx-auto d-block" src="{{asset($item->us_avatar)}}" width="80px" height="80px"/>
 					</div>	
 				</td>
 				<td>{!! $item->us_name !!}</td>
 				<td>{!! $item->email !!}</td>
-				<td>{!! $item->created_at !!}</td>
-				<td>{!! $item->updated_at !!}</td>
+				<td>{!! $item->sch_name !!}</td>
+				<td>{!! $item->sci_name !!}</td>
 				<td style="text-align: center">
-					<a href="{!! URL::route('admin.user.edit', $item->us_id) !!}" title="Sửa thông tin người dùng" style="text-decoration: none !important;color:#5aaf24">
+					<a href="{!! URL::route('admin.user.edit', $item->us_id) !!}" title="Sửa thông tin người dùng" style="text-decoration: none !important;color:#337ab7">
 						<i class="fas fa-user-edit"></i>
-					</a> 
+					</a> &nbsp;|&nbsp;
 					<a id = "deleteItem"  href="{!! URL::route('admin.user.delete', $item->us_id) !!}" title="Xóa người dùng" style="text-decoration: none !important;color:#f91b1b" onclick="return alert_function('Bạn có chắc chắn muốn xóa!')">
 						<i class="fas fa-trash-alt"></i>
 						<script>

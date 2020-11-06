@@ -7,11 +7,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use DB;
-use App\Customer;
-use App\news;
-use App\Product;
-use App\Service;
-use App\Personnel;
+use App\Science;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -21,14 +17,16 @@ use Carbon\Carbon;
 class ProfileController extends Controller
 {
 	
-	private $destinationPath =  '/uploads/Users/';
+	private $destinationPath =  '/uploads/profile/';
     public function getProfile($id){
-		$user = DB::table('users')->where('users.id',$id)->select('users.*')->limit(1)->get();
+		$user = DB::table('users')->where('users.us_id',$id)->select('users.*')->limit(1)->get();
 		if(count($user)==0){
 			return;
 		}
 		$user=$user[0];
-		return view('Front-end.profile.profile',compact('user'));
+		$science = new Science;
+		$listScience = $science->getSciencesBySchId($user->us_id_school);
+		return view('Front-end.profile.profile',compact('user','listScience'));
 	}
 
 	
@@ -46,9 +44,9 @@ class ProfileController extends Controller
 			'avatar.mimes' => 'ảnh đại diện người dùng phải có 1 trong các định dạng jpeg,png,jpg,gif,svg',
 			'avatar.max' => 'Dung lượng tối đa của ảnh là 2048 kb',
 		]);
-		$user = new user;
+		$user = new User;
 		$user = user::find($id);
-		$user->name = $data['name'];
+		$user->us_name = $data['name'];
 		
 		if($request->changePass == "on"){
 			$this->validate($request,[
@@ -79,7 +77,7 @@ class ProfileController extends Controller
 			$user->email = $data['email'];
 		}
 		
-		$user_avartar = '/uploads/Users'.$user->user_avartar;
+		$us_avatar = '/uploads/profile'.$user->us_avatar;
 		if($request->hasFile('avatar')){
 			$file = Input::file('avatar');
 			$filename =$file->getClientOriginalName();
@@ -87,10 +85,12 @@ class ProfileController extends Controller
 			$timestamp = str_replace([' ', ':','-'], '', Carbon::now()->toDateTimeString());
 			$name =$timestamp .'.'.$extension;
 			$file->move(public_path($this->destinationPath), $name);
-			$user->user_avartar = $this->destinationPath.$name;
+			$user->us_avatar = $this->destinationPath.$name;
 		}
+		$user->us_sci_id = $data['science'];   
+		$user->us_id_school = $data['school']; 
 		$user->save();
-		return redirect()->route('trangchu')->with('admin.thongbao','Sửa thành công');
+		return redirect()->route('home')->with('admin.thongbao','Sửa thành công');
 		
 	}
 	

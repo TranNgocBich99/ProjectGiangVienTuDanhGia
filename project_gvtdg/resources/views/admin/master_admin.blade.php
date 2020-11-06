@@ -36,71 +36,8 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-
-	<!--  Validate
-	<script type = "text/javascript" src = "{{asset('css/admin/js/Validate/validate.js')}}"></script>
-	<script type="text/javascript" src = "{{asset('css/admin/js/Validate/main.js')}}"></script>
-	<link type= "text/css" rel="stylesheet" href="{{asset('css/admin/validateStyle/validation.css')}}">
-	-->
-	<style>
-		table,tr,td,th{
-			text-align:center;
-			line-height:normal;
-			vertical-align: middle !important;
-
-		}
-		.input-message {
-			  position: unset;
-			  top: 0px;
-			  left: 0px;
-			  background: #fff;
-			  padding: 5px;
-			  border-radius: 0px;
-			  width: 100% !important;
-			  font-size: 14px;
-			  box-shadow: 0 0 0px #fff !important;
-			  min-height: 20px;
-			  display: none;
-			  animation: fadeIn .5s;
-			  color:red;
-		}
-		table.dataTable thead .sorting_asc:after {
-			content: "" !important;
-		}
-
-		table.dataTable thead .sorting_desc:after {
-			content: "" !important;
-		}
-
-		table.dataTable thead .sorting:after {
-			content: "" !important;
-		}
-		.user::before{
-			font-size: 1.4em;
-			display: block;
-			width: 0;
-			height: 0;
-			content: '';
-			pointer-events: none;
-			border-right: 10px solid transparent;
-			border-bottom: 10px solid #fff;
-			border-left: 10px solid transparent;
-			position: absolute;
-			top: -.45em;
-			right: .97em;
-		}
-		#wrapper button:hover{
-			box-shadow: 0 4px 5px 0 rgba(20, 156, 137, 0.52), 0 1px 10px 0 rgb(150, 209, 201), 0 2px 4px -1px rgb(141, 206, 197);
-
-		}
-		#wrapper button{
-			border: none;
-		}
-		#wrapper button{
-			transition:all .2s;
-		}
-
-	</style>
+	<link type= "text/css" rel="stylesheet" href="{{asset('css/admin/main.css')}}">
+	
 </head>
 
 <body>
@@ -122,37 +59,31 @@
 
             <ul class="nav navbar-top-links navbar-right">
                 <!-- /.dropdown -->
-                <li class="dropdown" style = "line-height: 50px;float: right;">
+                <li class="dropdown" style = "float: right;">
 
 					@if(Route::has('login'))
 						@auth
-							<a style = "padding:0;color: #000!important;" class="dropdown-toggle" data-toggle="dropdown" href="#">
-								<img style = "width:26px;cursor: pointer;" class = "img-circle img_click" src = "{{Auth::user()->user_avatar}}" onclick = "my_function()"/>
-								<span>{{ Auth::user()->name }}</span>
-								<i class="fa fa-caret-down"></i>
-							</a>
-							<ul class="dropdown-menu dropdown-user user">
-
-								<li>
-									<a href="{{route('admin.user.edit',Auth::user()->us_id)}}"><i style = "margin-right: 4px;" class="fa fa-user fa-fw"></i>{{ Auth::user()->name }}</a>
+							<div class="user_info" style="margin-top: 13px;">
+								<li class="header__navbar-item header__navbar-user">
+									<img src = "{{Auth::user()->us_avatar}}" alt="" class="header__navbar-user-img">
+									<span class="header__navbar-user-name">{{ Auth::user()->us_name }}</span>
+									<ul class="header__navbar-user-menu">
+										<li class="header__navbar-user-item">
+											<a href="{{route('admin.user.edit',Auth::user()->us_id)}}">Profile</a>
+										</li>
+										<li class="header__navbar-user-item">
+											<a href="/">Trở về trang chủ</a>
+										</li>
+										
+										<li class="header__navbar-user-item">
+											<a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Đăng xuất') }}</a>
+										</li>
+										<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+											@csrf
+										</form>
+									</ul>
 								</li>
-								<li>
-									<a href="{{route('admin.user.edit',Auth::user()->us_id)}}"><i class="fa fa-gear fa-fw"></i> Settings</a>
-								</li>
-								<li>
-									<a href="/"><i class="fas fa-arrow-circle-left"></i>Trở về trang chủ</a>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-										<i class="fas fa-sign-out-alt"></i>
-										{{ __('Logout') }}
-									</a>
-								</li>
-								<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-									@csrf
-								</form>
-							</ul>
+							</div>
 						@endauth
 					@endif
                     <!-- /.dropdown-user -->
@@ -161,7 +92,7 @@
             </ul>
             <!-- /.navbar-top-links -->
 
-            <div class="navbar-default sidebar" role="navigation">
+            <div class="navbar-default sidebar" role="navigation" style="margin-top:0 !important">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
 
@@ -172,7 +103,7 @@
                                     <a href="{{route('admin.user.getList')}}">Danh sách User</a>
                                 </li>
 								<li>
-                                    <a href="#">Tạo user</a>
+                                    <a href="{{route('admin.user.add')}}">Tạo user</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -242,10 +173,6 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{{asset('css/admin/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
-
-
-
-
 
     <!-- DataTables JavaScript -->
     <!--<script src="{{asset('css/admin/bower_components/dataTables/media/js/jquery.dataTables.js')}}"></script>-->
