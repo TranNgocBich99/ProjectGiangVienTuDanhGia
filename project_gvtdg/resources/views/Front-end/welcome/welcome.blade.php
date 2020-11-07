@@ -15,7 +15,7 @@
 		<div class="header">
 			<div class="row" >
 				<div class="col-sm-6">
-					<img src="/uploads/home/img/logo.png" alt="">
+					<img src="{{asset('/uploads/home/img/logo.png')}}" alt="">
 				</div>
 
 				<div class="col-sm-6 left" style=" padding-top: 20px; padding-left: 100px">
@@ -26,7 +26,7 @@
 								<div class = "img-user" style = "position:relative;padding: 0 15px;">
 									<div class="user_info" style="width: 460px;line-height: 35px;">
 										<p title = "{{ Auth::user()->us_name }}" style="font-size: 18px;float: right;cursor:pointer" onclick = "my_function()">Xin chào,{{ Auth::user()->us_name }}</p>
-										<img style = "width:35px;height:35px;cursor: pointer;float: right;" class = "img-circle img_click" src = "{{Auth::user()->us_avatar}}" onclick = "my_function()"/>
+										<img style = "width:35px;height:35px;cursor: pointer;float: right;" class = "img-circle img_click" src = "{{asset(Auth::user()->us_avatar)}}" onclick = "my_function()"/>
 									</div>
 									<li id = "user-logout" 
 											style = "display:none;position:absolute;
@@ -44,7 +44,7 @@
 												<li class="name_logout" style = "width:100%;list-style: none;">
 											
 													<div class = "img_user_data">
-														<a title = "Admin" href = "#" style = "display:block;margin:0" ><img class = "img-circle" src = "{{ Auth::user()->us_avatar}}"/></a>
+														<a title = "Admin" href = "#" style = "display:block;margin:0" ><img class = "img-circle" src = "{{asset(Auth::user()->us_avatar)}}"/></a>
 														<div class = "user_data">
 															@if(Auth::user()->us_is_admin === 1)   
 																<span class = "name_user" style = "display: block">
@@ -120,19 +120,19 @@
 					</ol>
 					<div class="carousel-inner" role="listbox">
 						<div class="item active">
-								<img src="/uploads/home/img/1.jpg" style="width: 100%;height: 500px; position: relative;">
+								<img src="{{asset('/uploads/home/img/1.jpg')}}" style="width: 100%;height: 500px; position: relative;">
 								<div class="caption" >
 									
 								</div>
 						</div>
 						<div class="item">
-								<img src="/uploads/home/img/2.jpg" style="width: 100%;height: 500px; position: relative;"  >
+								<img src="{{asset('/uploads/home/img/2.jpg')}}" style="width: 100%;height: 500px; position: relative;"  >
 								<div class="caption" >
 									
 								</div>
 						</div>
 						<div class="item">
-								<img src="/uploads/home/img/3.jpg" style="width: 100%;height: 500px; position: relative;">
+								<img src="{{asset('/uploads/home/img/3.jpg')}}" style="width: 100%;height: 500px; position: relative;">
 								<div class="caption" >
 									
 								</div>
@@ -158,7 +158,7 @@
 					<div class="col-sm-8">
 						<div class="row" style="padding-top: 30px;">
 							<div class="col-sm-4">
-								<img src="/uploads/home/img/4.jpg" alt="" style="width: 100%">
+								<img src="{{asset('/uploads/home/img/4.jpg')}}" alt="" style="width: 100%">
 							</div>
 							<div class="col-sm-8 co">
 								
@@ -171,7 +171,7 @@
 						</div>
 						<div class="row" style="padding-top: 30px;">
 							<div class="col-sm-4">
-								<img src="/uploads/home/img/5.jpg" alt="" style="width: 100%">
+								<img src="{{asset('/uploads/home/img/5.jpg')}}" alt="" style="width: 100%">
 							</div>
 							<div class="col-sm-8 co">
 								<a class="title">VNU-VJU: Phòng thí nghiệm Vật liệu và Kiểm định công trình đạt chuẩn quốc gia thử nghiệm kiểm định vật liệu và công trình</a>
@@ -182,7 +182,7 @@
 
 						<div class="row" style="padding-top: 30px;">
 							<div class="col-sm-4">
-								<img src="/uploads/home/img/6.jpg" alt="" style="width: 100%">
+								<img src="{{asset('/uploads/home/img/6.jpg')}}" alt="" style="width: 100%">
 							</div>
 							<div class="col-sm-8 co">
 								<a class="title">Đào tạo báo chí thời công nghệ số: Nghề báo là sứ mệnh, đưa tin có trách nhiệm</a>
