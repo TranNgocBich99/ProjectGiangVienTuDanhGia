@@ -43,6 +43,11 @@
 					<small>Thêm</small>
 		</h1>
 	</div>
+	<?php
+		if(sizeof($listSchool) == 0){
+			return;
+		}
+	?>
 	<div class="col-12" style="padding-bottom:120px">	
 			@include('admin.block.error')
 			@include('admin.thongbao')
@@ -52,8 +57,8 @@
 				<div class="form-group" style="width: 100%;float: left;">
 					<label class="col-lg-2 label_data">Ảnh đại diện</label>
 					<div class="input_data" style="float:left;width: 80%;">
-						<img id="avar" name = "avar" width="100px" height="30%" alt="avatar" src="/uploads/profile/default.png" accept="image/*"/>
-						<input style = "margin-top: 10px;" type= "file" name = "avatar" value = "/uploads/profile/default.png" onchange="readURL(this);"></input>
+						<img id="avar" name = "avar" width="100px" height="30%" alt="avatar" src="{{asset('/uploads/profile/default.png')}}" accept="image/*"/>
+						<input style = "margin-top: 10px;" type= "file" name = "avatar" value = "{{asset('/uploads/profile/default.png')}}" onchange="readURL(this);"></input>
 					</div>
 
 					<script>

@@ -43,6 +43,11 @@
 					<small>Sửa</small>
 				</h1>
 		</div>
+		<?php
+			if(sizeof($listSchool) == 0 || sizeof($listScience) == 0){
+				return;
+			}
+		?>
 		<div class="col-12" style="padding-bottom:120px">
 		@include('admin.block.error')
 		@include('admin.thongbao')

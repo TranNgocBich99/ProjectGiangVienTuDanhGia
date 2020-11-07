@@ -11,6 +11,12 @@
 		</h1>
 		
 	</div>
+	<?php
+		if(sizeof($listUsers) == 0){
+			return;
+		}
+	?>
+	<div 
 		@include('admin.thongbao');
 		<table class="table table-striped table-bordered table-hover" id="dataTables-example">
 		<thead>
