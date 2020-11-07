@@ -65,7 +65,7 @@
 						@auth
 							<div class="user_info" style="margin-top: 13px;">
 								<li class="header__navbar-item header__navbar-user">
-									<img src = "{{Auth::user()->us_avatar}}" alt="" class="header__navbar-user-img">
+									<img src = "asset('{{Auth::user()->us_avatar}}')" alt="" class="header__navbar-user-img">
 									<span class="header__navbar-user-name">{{ Auth::user()->us_name }}</span>
 									<ul class="header__navbar-user-menu">
 										<li class="header__navbar-user-item">
