@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 06, 2020 lúc 04:20 PM
+-- Thời gian đã tạo: Th10 09, 2020 lúc 01:11 PM
 -- Phiên bản máy phục vụ: 10.4.11-MariaDB
 -- Phiên bản PHP: 7.2.30
 
@@ -71,6 +71,28 @@ INSERT INTO `evaluation` (`eva_id`, `eva_name`, `eva_ad_create_point`, `created_
 (29, 'Các yêu cầu sửa chữa cơ sở vật chất hoặc trang thiết bị phục vụ học tập, nghiên cứu được đáp ứng', 0, '2020-10-29 12:02:25', '2020-10-29 12:02:25'),
 (30, 'Thư viện và các nguồn học liệu phù hợp và được cập nhật để hỗ trợ các hoạt động đào tạo và nghiên cứu trong phạm vi học phần', 0, '2020-10-29 12:02:25', '2020-10-29 12:02:25'),
 (31, 'Cơ sở hạ tầng công nghệ hỗ trợ việc ứng dụng công nghệ thông tin vào dạy và học đáp ứng được yêu cầu', 0, '2020-10-29 12:02:25', '2020-10-29 12:02:25');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `id` int(20) NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `password_resets`
+--
+
+INSERT INTO `password_resets` (`id`, `email`, `token`, `created_at`, `updated_at`) VALUES
+(5, 'dangvantu1999@gmail.com', '$2y$10$iW94V2Z7Xb8RrgPTHKQuTO6XfwIhoxfPhq6lbNxO8K4hHeWC9N0za', '2020-11-06 20:46:25', '2020-11-07 03:46:25'),
+(12, 'dangvantuadv@gmail.com', '$2y$10$KlSqddNOsGYMhhFsCklhLuB1cAJZLMw5yPMSvPUNhO8QJlBokugRW', '2020-11-07 00:16:02', '2020-11-07 07:16:02');
 
 -- --------------------------------------------------------
 
@@ -193,10 +215,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`us_id`, `us_name`, `us_is_admin`, `us_is_active`, `us_sci_id`, `us_id_school`, `password`, `created_at`, `updated_at`, `email`, `email_verified_at`, `remember_token`, `us_avatar`) VALUES
-(2, 'Đặng Văn Tú', 1, NULL, 4, 2, '$2y$10$rVxOA6wCU2O6VnwdGu2gTuV/1iL1gbECtoW8N2CxFJrgZcfeaqNSm', '2020-10-28 00:51:12', '2020-11-06 08:00:06', 'dangvantu1999@gmail.com', '2020-10-28 07:51:12', NULL, '/uploads/profile/20201106145613.jpg'),
+(2, 'Đặng Văn Tú', 1, NULL, 4, 2, '$2y$10$iM5dbTnSh1TmIOBQj4OT6.0TcIvxfKSqR6BtadZDWVFZmi35bUC4W', '2020-10-28 00:51:12', '2020-11-06 21:15:27', 'dangvantuadv@gmail.com', '2020-10-28 07:51:12', 'fozVEDGCMGQa8SxEV8NfJSgqmTPURw766KjfSabZ8h8yvYp3CI0bfN1SRDuX', '/uploads/profile/20201106145613.jpg'),
 (6, 'add1', 1, NULL, 1, 1, '$2y$10$KHXWiOBhUeYYpra2ATvMiur1jbiwpxexIZgzaN6ULEMqTT5APhT06', '2020-10-31 01:55:30', '2020-10-31 01:55:30', 'add1@gmail.com', '2020-10-31 08:55:30', NULL, '/uploads/profile/default.png'),
 (7, 'test', 1, NULL, 2, 1, '$2y$10$qMdXygEwlJm5hhAoNW527OTJupz5Ikibd.mmJOyrOI0bDj5bm1e4a', '2020-11-05 20:55:11', '2020-11-05 20:55:27', 'test@gmail.com', '2020-11-06 03:55:11', NULL, '/uploads/profile/default.png'),
-(8, 'dangvantu', 2, NULL, 1, 1, '$2y$10$flukID6HyGxGJa7P9cdCNOPZg0Mwv9WbKPEseqihQ6RDyBy1V422S', '2020-11-06 02:09:52', '2020-11-06 03:04:09', 'vantund2017@gmail.com', '2020-11-06 09:09:52', NULL, '/uploads/profile/default.png');
+(8, 'dangvantu', 2, NULL, 1, 1, '$2y$10$flukID6HyGxGJa7P9cdCNOPZg0Mwv9WbKPEseqihQ6RDyBy1V422S', '2020-11-06 02:09:52', '2020-11-06 03:04:09', 'vantund2017@gmail.com', '2020-11-06 09:09:52', NULL, '/uploads/profile/default.png'),
+(9, 'dangvantu', 1, NULL, 1, 1, '$2y$10$2Xks8GqnhI2JkPJXMt620O7iJaiAlkNNJM2TEMiPxlQZORTg3Zg0u', '2020-11-06 18:18:04', '2020-11-06 18:18:04', 'adv@gmail.com', '2020-11-07 01:18:04', NULL, '/uploads/profile/default.png'),
+(10, 'dtmh', 1, NULL, 2, 1, '$2y$10$YY0F8jLW5qSkjPTJ7fTLCOTU0a.GjuKNAc.ZJV3Pb6IBEJ/VS9dP2', '2020-11-06 18:36:11', '2020-11-06 18:36:22', 'ad@gmail.com', '2020-11-07 01:36:11', NULL, '/uploads/profile/default.png');
 
 -- --------------------------------------------------------
 
@@ -229,6 +253,12 @@ INSERT INTO `user_eval_sem` (`id`, `us_id`, `se_id`, `eval_id`, `user_rate_point
 ALTER TABLE `evaluation`
   ADD PRIMARY KEY (`eva_id`),
   ADD KEY `eva_id` (`eva_id`,`eva_name`,`eva_ad_create_point`,`created_at`,`updated_at`);
+
+--
+-- Chỉ mục cho bảng `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Chỉ mục cho bảng `school`
@@ -292,6 +322,12 @@ ALTER TABLE `evaluation`
   MODIFY `eva_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
+-- AUTO_INCREMENT cho bảng `password_resets`
+--
+ALTER TABLE `password_resets`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT cho bảng `school`
 --
 ALTER TABLE `school`
@@ -319,7 +355,7 @@ ALTER TABLE `statistic`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `us_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `us_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `user_eval_sem`

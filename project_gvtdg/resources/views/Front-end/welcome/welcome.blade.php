@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-	<title> VNU-Trang chủ </title>
+	<title> VNU-TRANG CHỦ </title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">  
 	<script src="{{asset('js/FrontEndJs/home/main.js')}}"></script>
@@ -18,13 +18,12 @@
 					<img src="{{asset('/uploads/home/img/logo.png')}}" alt="">
 				</div>
 
-				<div class="col-sm-6 left" style=" padding-top: 20px; padding-left: 100px">
-					<div class="log" style="display: flex; padding: 10px; padding-left: 250px;float: right;">
-						
+				<div class="col-sm-6" style=" padding-top: 20px;float: right;">
+					<div class="log" style="padding: 10px;">
 						@if (Route::has('login'))
 							@auth
 								<div class = "img-user" style = "position:relative;padding: 0 15px;">
-									<div class="user_info" style="width: 460px;line-height: 35px;">
+									<div class="user_info" style="line-height: 35px;">
 										<p title = "{{ Auth::user()->us_name }}" style="font-size: 18px;float: right;cursor:pointer" onclick = "my_function()">Xin chào,{{ Auth::user()->us_name }}</p>
 										<img style = "width:35px;height:35px;cursor: pointer;float: right;" class = "img-circle img_click" src = "{{asset(Auth::user()->us_avatar)}}" onclick = "my_function()"/>
 									</div>
@@ -94,7 +93,7 @@
 													display:block;padding: 12px !important;
 													color: #007f49 !important;text-decoration: none;
 													border-radius: 6px;font-size: 14px !important;
-													border: 1px solid #007f49 !important;
+													border: 1px solid #007f49 !important;margin-bottom: 15px;margin-right: 15px;
 													background-color:#fff;" href="{{ route('login') }}">
 											ĐĂNG NHẬP</a>
 									</li>
@@ -102,60 +101,183 @@
 							@endauth
 						@endif
 					</div>
-					<form class="example">
-						<input type="text" placeholder="Tìm kiếm" name="search">
-						<button type="submit"><i class="fa fa-search"></i></button>
-					 </form>
+					
+					<div class="se" style="float: right;margin-right: 15px;">
+						<form class="example">
+							<input type="text" placeholder="Tìm kiếm" name="search">
+							<button type="submit"><i class="fa fa-search"></i></button>
+						 </form>
+					</div>
+					
 				</div>
 			</div>
 		</div>
-
-		<div class="content" >
+		<div class="menu" style="padding-top: 15px;">
 			<div class="container">
-				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-					<ol class="carousel-indicators">
-						<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-						<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-						<li data-target="#carousel-example-generic" data-slide-to="2"></li>
-					</ol>
-					<div class="carousel-inner" role="listbox">
-						<div class="item active">
-								<img src="{{asset('/uploads/home/img/1.jpg')}}" style="width: 100%;height: 500px; position: relative;">
-								<div class="caption" >
-									
+				<div class="row">
+					<div class="col-sm-12">
+						<ul>
+							<li><a>TRANG CHỦ</a></li>
+							<li><a>GIỚI THIỆU</a></li>
+							<li><a>ĐÀO TẠO</a></li>
+							<li><a>KHOA HỌC CÔNG NGHỆ</a></li>
+							<li><a>HỢP TÁC & PHÁT TRIỂN</a></li>
+							<li><a>SINH VIÊN</a></li>
+							<li><a>CÁN BỘ</a></li>
+							<li><a>TRANG CHỦ</a></li>
+							<li><a>TUYỂN DỤNG</a></li>
+						
+						</ul>
+					</div>
+				</div>
+				
+			</div>
+			
+		</div>
+
+		<div class="content" style="padding-top: 15px;">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-8">
+						<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+							<ol class="carousel-indicators">
+								<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+								<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+								<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+							</ol>
+							<div class="carousel-inner" role="listbox">
+								<div class="item active">
+										<img src="{{asset('/uploads/home/img/1.jpg')}}" style="width: 800px; height: 293px; position: relative;">
+										<div class="caption" ></div>
 								</div>
-						</div>
-						<div class="item">
-								<img src="{{asset('/uploads/home/img/2.jpg')}}" style="width: 100%;height: 500px; position: relative;"  >
-								<div class="caption" >
-									
+								<div class="item">
+										<img src="{{asset('/uploads/home/img/2.jpg')}}" style="width: 800px;img: 100%; height: 293px; position: relative;"  >
+										<div class="caption" >
+											
+										</div>
 								</div>
-						</div>
-						<div class="item">
-								<img src="{{asset('/uploads/home/img/3.jpg')}}" style="width: 100%;height: 500px; position: relative;">
-								<div class="caption" >
-									
+								<div class="item">
+										<img src="{{asset('/uploads/home/img/3.jpg')}}" style="width: 800px; height: 293px; position: relative;">
+										<div class="caption" >
+											
+										</div>
 								</div>
+							</div>
+							<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+								<span class="icon-prev" aria-hidden="true"></span>
+								<span class="sr-only">Previous</span>
+							</a>
+							<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+								<span class="icon-next" aria-hidden="true"></span>
+								<span class="sr-only">Next</span>
+							</a>
 						</div>
 					</div>
-					<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-						<span class="icon-prev" aria-hidden="true"></span>
-						<span class="sr-only">Previous</span>
-					</a>
-					<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-						<span class="icon-next" aria-hidden="true"></span>
-						<span class="sr-only">Next</span>
-					</a>
+					<div class="col-sm-4">
+						<div class="donvi">
+							<div>CÁC ĐƠN VỊ THÀNH VIÊN VÀ TRỰC THUỘC</div>
+							<br>
+							<ul>
+								<li>TRƯỜNG ĐẠI HỌC THÀNH VIÊN</li>
+								<li>KHOA TRỰC THUỘC</li>
+								<li>VIỆN NGHIÊN CỨU</li>
+								<li>TRUNG TÂM ĐÀO TẠO & NGHIÊN CỨU</li>
+								<li>ĐƠN VỊ PHỤC VỤ</li>
+							</ul>
+						</div>
+						<div class="anh">
+
+							<table cellpadding="0" cellspacing="0" border="0" height="74px">
+								<tbody><tr>
+									<td>
+										<a href="/schools" style="padding:0px;margin:0px;">
+											<img src="{{asset('/uploads/home/img/9.jpg')}}" style="width:154px;height:74px" border="0">
+										</a>
+									</td><td>
+									</td><td>
+										<a href="http://dangky.vnu.edu.vn" style="padding:0px;margin:0px">
+											<img src="{{asset('/uploads/home/img/10.jpg')}}" style="width:154px;height:74px" border="0">
+										</a>
+									</td><td>
+								</td></tr>
+							</tbody></table>
+							<table cellpadding="0" cellspacing="0" border="0" height="74px">
+								<tbody><tr>
+									<td>
+										<a href="/schools" style="padding:0px;margin:0px;">
+											<img src="{{asset('/uploads/home/img/11.jpg')}}" style="width:154px;height:74px" border="0">
+										</a>
+									</td><td>
+									</td><td>
+										<a href="http://dangky.vnu.edu.vn" style="padding:0px;margin:0px">
+											<img src="{{asset('/uploads/home/img/12.jpg')}}" style="width:154px;height:74px" border="0">
+										</a>
+									</td><td>
+								</td></tr>
+							</tbody></table>
+
+							
+						</div>
+					</div>
+					
 				</div>
+				
 			</div>
 		</div>
-
+	<div class="menu2" style="padding-top: 15px;">
+		<div class="menu">	
+			<div class="container">
+				<table style="width:100%" cellpadding="0px" cellspacing="0px">
+					<tbody><tr>
+						<td>
+							<div class="menu1" style="width: 175px; border-bottom-left-radius: 8px;" data-corner="BL 8px">
+								<a href="/home/?C2661">
+									DỰ ÁN ĐTXD HÒA LẠC
+								</a>
+							</div>
+						</td>
+						<td>
+							<div class="menu1" style="margin-left: 2px; width: 175px; border-bottom-left-radius: 8px;" data-corner="BL 8px">
+								<a href="http://taybac.vnu.edu.vn">
+									CHƯƠNG TRÌNH TÂY BẮC
+								</a>
+							</div>
+						</td>
+						<td>
+							<div class="menu1" style="margin-left: 2px; width: 175px; border-bottom-left-radius: 8px;" data-corner="BL 8px">
+								<a href="https://js.vnu.edu.vn/bulletine/issue/archive">
+									BẢN TIN ĐHQGHN
+								</a>
+							</div>
+						</td>
+						<td>
+							<div class="menu1" style="margin-left: 2px; width: 175px; border-bottom-left-radius: 8px;" data-corner="BL 8px">
+								<a href="https://js.vnu.edu.vn">
+									&nbsp;TẠP CHÍ KHOA HỌC&nbsp;
+								</a>
+							</div>
+						</td>
+						<td>
+							<div class="menu1" style="margin-left: 2px; width: 175px; border-bottom-left-radius: 8px;" data-corner="BL 8px">
+								<a href="https://js.vnu.edu.vn">
+									&nbsp;ĐẢM BẢO CHẤT LƯỢNG&nbsp;
+								</a>
+							</div>
+						</td>
+						
+					</tr>
+				</tbody></table>
+			</div>
+			
+		</div>
+	</div>
 		<div class="content2" style="padding-top: 30px;">
 			
 			<div class="container">
-				<div style=" color: red">TIN TỨC & SỰ KIỆN</div>
+				
 				<div class="row">
-					<div class="col-sm-8">
+					<div class="col-sm-8" style="background: -webkit-gradient(linear, left top, right top, from(#ffffff), to(#e7e7e7)); width: 770px">
+						<div style=" color: red">TIN TỨC & SỰ KIỆN</div>
 						<div class="row" style="padding-top: 30px;">
 							<div class="col-sm-4">
 								<img src="{{asset('/uploads/home/img/4.jpg')}}" alt="" style="width: 100%">
@@ -181,7 +303,7 @@
 						</div>
 
 						<div class="row" style="padding-top: 30px;">
-							<div class="col-sm-4">
+							<div class="col-sm-4" >
 								<img src="{{asset('/uploads/home/img/6.jpg')}}" alt="" style="width: 100%">
 							</div>
 							<div class="col-sm-8 co">
@@ -191,9 +313,9 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-4">
+					<div class="col-sm-4" style="background: -webkit-gradient(linear, left top, right top, from(#ffffff), to(#e7e7e7)); width: 335px">
 						<div style=" color: red">THÔNG BÁO MỚI</div>
-						<ul>
+						<ul class="new">
 							<li>
 								<a class="link">Công tác nhân sự tháng 11/2020</a>
 							</li>
@@ -224,18 +346,67 @@
 			</div>
 
 		</div>
-
-		<div class="footer" style="text-align: center; color: gray; padding-top: 30px; padding-bottom: 30px">
+		<div class="footer2" style="padding-top: 30px;">
 			<div class="container">
-				<div>
+				<div class="imm">
 				
-					Bản quyền thuộc về Đại học Quốc gia Hà Nội
-					<div>144 đường Xuân Thủy, Quận Cầu Giấy, Hà Nội, Việt Nam</div>
-					<div>Giấy phép số 993/GP-TTĐT ngày 20/3/2020 của Sở Thông tin và Truyền thông Hà Nội.</div>
-						
-					Webmaster: media@vnu.edu.vn
+					<img src="{{asset('/uploads/home/img/7.jpg')}}" alt="" style="width:220px; height:161px;">
+					<img src="{{asset('/uploads/home/img/8.jpg')}}" alt="" style="width:550px;height:161px; padding-left: 30px">
+
+					<div class="divimgrightbt">
+						<div style="width: 309px; height: 160px;">
+							 <table height="161" cellpadding="0px" cellspacing="0px">	 
+							 <tbody><tr style="background-color:#af0900;padding-bottom: 1em">
+										<td colspan="2">
+											<a href="/ttsk/?C1660" style="font-size:14px; color:#fff!important;text-decoration: none; font-size: 14px;
+												margin: 0;
+												text-transform: uppercase;
+												text-decoration: none;
+												font-weight: bold;
+												line-height: 25px;
+												height: 25px;
+												background: #af0900 no-repeat 5px 0;
+												color: #fff;
+												padding-left: 7px;">
+											<b>
+												SINH VIÊN
+											</b>
+											</a>
+										</td>
+							</tr>
+							
+									<tr style="background-color:#216934">
+									<td style="width:35%"> 
+										<a href="/ttsk/?C1660/N27144/Quy-hoc-bong-Posco-TJ-Park-trao-10-suat-hoc-bong-cho-sinh-vien-dHQGHN
+											.htm"><img src="{{asset('/uploads/home/img/13.jpg')}}" alt="" style=" padding: 3px; height: 60px; width: 100px; padding-bottom: 2px;">
+										</a>
+									</td>
+									<td style="padding-right:2px ">						
+										<a style="font-size:13px; color: #fff!important; text-decoration:none; line-height: 18px;padding-bottom:2px" href="/ttsk/?C1660/N27144/Quy-hoc-bong-Posco-TJ-Park-trao-10-suat-hoc-bong-cho-sinh-vien-dHQGHN
+										.htm"> Quỹ học bổng Posco TJ Park trao 10 suất học bổng cho sinh viên ĐHQGHN
+										</a> 
+									</td>	
+									</tr> 
+									<tr style="background-color:#216934">
+										<td style="width:35%"> 
+											<a href="/ttsk/?C1660/N27118/Le-tong-ket-va-trao-giai-Cuoc-thi-dai-su-Van-hoa-doc-nam-2020.htm"><img src="{{asset('/uploads/home/img/14.jpg')}}" alt="" style=" padding: 3px; height: 60px; width: 100px; padding-bottom: 2px;">
+											</a>
+										</td>
+										<td style="padding-right:2px ">						
+											<a style="font-size:13px; color: #fff!important; text-decoration:none; line-height: 18px;padding-bottom:2px" href="/ttsk/?C1660/N27118/Le-tong-ket-va-trao-giai-Cuoc-thi-dai-su-Van-hoa-doc-nam-2020.htm"> Lễ tổng kết và trao giải Cuộc thi Đại sứ Văn hoá đọc năm 2020 </a> 
+										</td>	
+									</tr> 
+									<tr style="background-color:#fff;height:1px" "="></tr>
+
+							</tbody></table>
+						</div>
+					
 					</div>
+				</div>
 			</div>
+			
+		</div>
+		<div class="footer">
 			
 		</div>
 	</div>
