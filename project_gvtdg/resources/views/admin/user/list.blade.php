@@ -16,7 +16,7 @@
 			return;
 		}
 	?>
-	<div 
+	<div>
 		@include('admin.thongbao');
 		<table class="table table-striped table-bordered table-hover" id="dataTables-example">
 		<thead>

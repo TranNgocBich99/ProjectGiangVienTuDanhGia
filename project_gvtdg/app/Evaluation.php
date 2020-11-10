@@ -22,4 +22,10 @@ class Evaluation extends Authenticatable
 		return $data;
 	}
 	
+	public function GetAllEvaluationsByCategory($ca_id){
+		$data = DB::table($this->table)
+				->where('evaluation.ca_id', '=', $ca_id)
+				->get();
+		return $data;
+	}
 }

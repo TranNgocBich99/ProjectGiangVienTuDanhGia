@@ -17,9 +17,13 @@ Route::post('dangki',['as'=>'postDangki','uses'=>'RegisterController@postDangki'
 Route::get('dangki',['as'=>'getDangki','uses'=>'RegisterController@getDangki']);
 
 Auth::routes();
+Route::get('form','UserController@getForm')->name('getForm');
+Route::post('post_form','UserController@post_form')->name('post_form');
+
 // ------------------------------------------- Edit profile --------------------------------------
 
 Route::get('edit/profile/{id}','ProfileController@getProfile')->name('getProfile');
+
 Route::post('edit/profile/{id}','ProfileController@postProfile')->name('postProfile');
 
 Route::get('logout', 'Auth\LoginController@logout', function () {
@@ -29,7 +33,6 @@ Route::group(['prefix'=>'admin','middleware' => ['can:admin']],function(){
 
 	//-------------------------------------------User------------------------------------------
 	Route::group(['prefix'=>'user'],function(){
-
 			Route::get('/',['as'=>'admin.user.getList','uses'=>'UserController@getList']);
 			Route::get('list',['as'=>'admin.user.getList','uses'=>'UserController@getList']);
 			Route::get('add',['as'=>'admin.user.add','uses'=>'UserController@getAdd']);
@@ -38,6 +41,7 @@ Route::group(['prefix'=>'admin','middleware' => ['can:admin']],function(){
 			Route::get('edit/{id}',['as'=>'admin.user.edit','uses'=>'UserController@getEdit']);
 			Route::post('edit/{id}',['as'=>'admin.user.postEdit','uses'=>'UserController@postEdit']);
 			Route::post('edit/{id}',['as'=>'admin.user.postEdit','uses'=>'UserController@postEdit']);
+			
 	});
 
 	//-------------------------------------------School------------------------------------------
