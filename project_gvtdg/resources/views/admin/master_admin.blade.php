@@ -125,10 +125,10 @@
                             <a><i class="fa fa-bar-chart-o fa-fw"></i>Trường<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
 								<li>
-                                    <a href="#">Danh sách</a>
+                                    <a href="{{route('admin.school.getList')}}">Danh sách</a>
                                 </li>
                                 <li>
-                                    <a href="#">Thêm mới</a>
+                                    <a href="{{route('admin.school.add')}}">Thêm mới</a>
                                 </li>
                             </ul>
                         </li>

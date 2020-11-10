@@ -13,7 +13,7 @@
 					@include('admin.block.error')
 					@include('admin.thongbao')
 					<form id = "validate_form" action="{{route('admin.school.postAdd')}}" method="POST" enctype="multipart/form-data" >
-						
+						@csrf
 						<div class="form-group">		
 							<label>Trường</label>
 							<input  class = "form-control input" id = "name" type = "text" name = "name" autofocus="autofocus"  placeholder = "Trường"></input>

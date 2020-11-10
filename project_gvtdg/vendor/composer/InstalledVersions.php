@@ -19,7 +19,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '0ff8ca69a58c1ef44c706a6c37ebc2d5b7c5c692',
+    'reference' => '3e8ded6fce13adadd7d25023a548709130efc61d',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -383,7 +383,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '0ff8ca69a58c1ef44c706a6c37ebc2d5b7c5c692',
+      'reference' => '3e8ded6fce13adadd7d25023a548709130efc61d',
     ),
     'laravel/tinker' => 
     array (
@@ -472,12 +472,12 @@ private static $installed = array (
     ),
     'opis/closure' => 
     array (
-      'pretty_version' => '3.6.0',
-      'version' => '3.6.0.0',
+      'pretty_version' => '3.6.1',
+      'version' => '3.6.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'c547f8262a5fa9ff507bd06cc394067b83a75085',
+      'reference' => '943b5d70cc5ae7483f6aff6ff43d7e34592ca0f5',
     ),
     'paragonie/random_compat' => 
     array (

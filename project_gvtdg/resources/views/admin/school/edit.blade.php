@@ -13,7 +13,7 @@
 					@include('admin.block.error')
 					@include('admin.thongbao')
 					<form id = "form_edit" action="{!! URL::route('admin.school.edit', $school->sch_id) !!}" method="POST" enctype="multipart/form-data" >
-						
+						@csrf
 						<div class="form-group">		
 							<label>Trường</label>
 							<input  class = "form-control input" id = "name" type = "text" name = "name" autofocus="autofocus"  value="{!! $school->sch_name !!}" placeholder = "Trường"></input>

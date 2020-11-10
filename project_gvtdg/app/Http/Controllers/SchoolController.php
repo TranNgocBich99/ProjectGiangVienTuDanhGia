@@ -7,6 +7,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use DB;
 use App\school;
+use App\Science;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
@@ -25,6 +26,7 @@ class schoolController extends Controller
 		return view('admin.school.list',compact('listSchool'));
       
     }
+
 	//add
 	public function getAdd(){
 		return view('admin.school.add');
@@ -32,34 +34,23 @@ class schoolController extends Controller
 	public function postAdd(Request $request){
 		$data = $request->all();
 		$this->validate($request,[
-			'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 			'name' => 'required|min:3|max:255',
-			'email' => 'required|email|unique:schools,email',
-			'password' => 'required|min:8|max:32',
-			'passwordAgain' => 'same:password'
+			'address' => 'required|min:3|max:255'
 		],[
-			'avatar.image' => 'Chọn avartar người dùng với định dạng ảnh',
-			'avatar.mimes' => 'ảnh đại diện người dùng phải có 1 trong các định dạng jpeg,png,jpg,gif,svg',
-			'avatar.max' => 'Dung lượng tối đa của ảnh là 2048 kb',
-			'name.required' => 'Bạn chưa nhập tên người dùng',
-			'name.min' => 'Tên người dùng phải có ít nhất 3 ký tự',
-			'name.max' => 'Tên người dùng chỉ được tối đa 255 ký tự',
-			'email.required' => 'Bạn chưa nhập Email',
-			'email.email' => 'Bạn chưa nhập đúng định dạng Email', 
-			'email.unique' => 'Email đã tồn tại',
-			'password.required' => 'Bạn chưa nhập mật khẩu',
-			'password.min' => 'Mật khẩu phải có ít nhất 8 ký tự',
-			'password.max' => 'Mật khẩu chỉ được tối đa 32 ký tự',
-			'passwordAgain.same' => 'Mật khẩu nhập lại không đúng'
+			'name.required' => 'Bạn chưa nhập tên Trường',
+			'name.min' => 'Tên trường phải có ít nhất 3 ký tự',
+			'name.max' => 'Tên trường chỉ được tối đa 255 ký tự',
+			'address.required' => 'Bạn chưa nhập địa chỉ',
+			'address.min' => 'Địa chỉ phải có ít nhất 3 ký tự',
+			'address.max' => 'Địa chỉ chỉ được tối đa 255 kí tự'
 		]);
 		$school = new school;
-		$school->us_name = $data['name'];
-		$school->email = $data['email'];
-		$school->us_is_admin = $data['type'];   
-		$school->password = bcrypt($data['password']);
+		$school->sch_name = $data['name'];
+		$school->sch_address = $data['address'];
 		$school->save();
 		return redirect()->route('admin.school.getList')->with(['flash_level'=>'success','flash_message'=>'Thêm thành công']);
 	}
+
 	//delete
 	public function getDelete($id){
 		school::destroy($id);
@@ -80,23 +71,21 @@ class schoolController extends Controller
 		$data = $request->all();
 	
 		$this->validate($request,[
-			'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 			'name' => 'required|min:3|max:255',
+			'address' => 'required|min:3|max:255'
 		],[
-			'name.required' => 'Bạn chưa nhập tên người dùng',
-			'name.min' => 'Tên người dùng phải có ít nhất 3 ký tự',
-			'name.max' => 'Tên người dùng chỉ được tối đa 255 ký tự',
-			'avatar.image' => 'Chọn avartar người dùng với định dạng ảnh',
-			'avatar.mimes' => 'ảnh đại diện người dùng phải có 1 trong các định dạng jpeg,png,jpg,gif,svg',
-			'avatar.max' => 'Dung lượng tối đa của ảnh là 2048 kb',
+			'name.required' => 'Bạn chưa nhập tên Trường',
+			'name.min' => 'Tên trường phải có ít nhất 3 ký tự',
+			'name.max' => 'Tên trường chỉ được tối đa 255 ký tự',
+			'address.required' => 'Bạn chưa nhập địa chỉ',
+			'address.min' => 'Địa chỉ phải có ít nhất 3 ký tự',
+			'address.max' => 'Địa chỉ chỉ được tối đa 255 kí tự'
 		]);
 		$school = new school;
 		$school = school::find($id);
-		$school->us_name = $data['name'];
-		$school->us_is_admin = $data['type']; 
+		$school->sch_name = $data['name'];
+		$school->sch_address = $data['address']; 
 		$school->save();
 		return redirect()->route('admin.school.getList')->with('admin.thongbao','Sửa thành công');
-
 	}
-	
 }
