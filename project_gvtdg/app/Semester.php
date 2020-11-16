@@ -1,23 +1,30 @@
 <?php
 
 namespace App;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use DB;
+use Illuminate\Database\Eloquent\Model;
 
-class Semester extends Authenticatable -
-	use Notifiable;
-	protected $table = 'semester';
-	protected $fillable = [
+class Semester extends Model
+{
+    protected $table = 'semester';
+    protected $fillable = [
         'se_id','se_name', 'se_year','created_at','updated_at'
     ];
-	
+
 	protected $primaryKey = 'se_id';
-  
-	public function GetAllSemester(){
-		$data = DB::table($this->table)->get();
-		return $data;
-	}
-	
+
+	public function getListYears() {
+	    $data = DB::table($this->getTable())
+            ->select('se_year')
+            ->groupBy('se_year')
+	        ->get();
+	    return $data;
+    }
+
+    public function getListSeByYears($yearInput){
+        $data = DB::table($this->getTable())
+            ->where('se_year', $yearInput)
+            ->get();
+        return $data;
+    }
 }

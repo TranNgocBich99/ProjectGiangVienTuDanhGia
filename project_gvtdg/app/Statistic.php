@@ -26,18 +26,19 @@ class Statistic extends Authenticatable
 	        ->get();
 	    return $data;
     }
-    public function averageScore() {
+    public function averageScore($se_id) {
 	    $data = DB::table('evaluation')
             ->join('user_eval_sem', 'evaluation.eva_id', '=', 'user_eval_sem.eval_id')
-            ->select('evaluation.eva_id', 'user_eval_sem.point as a', 'evaluation.eva_name', DB::raw('sum(user_eval_sem.point) as point, COUNT(user_eval_sem.eval_id) as number_user'))
+            ->select('evaluation.eva_id', 'user_eval_sem.user_rate_point as a', 'evaluation.eva_name', DB::raw('sum(user_eval_sem.user_rate_point) as point, COUNT(user_eval_sem.eval_id) as number_user'))
+            ->where('se_id', $se_id)
             ->groupBy('user_eval_sem.eval_id')
             ->get();
 	    return $data;
     }
-    public function getPoint() {
+   public function getPoint() {
 	    $data = DB::table('evaluation')
             ->join('user_eval_sem', 'evaluation.eva_id', '=', 'user_eval_sem.eval_id')
-            ->select('user_eval_sem.point')
+            ->select('user_eval_sem.user_rate_point')
             ->get();
 	    return $data;
     }

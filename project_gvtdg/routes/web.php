@@ -41,7 +41,7 @@ Route::group(['prefix'=>'admin','middleware' => ['can:admin']],function(){
 			Route::get('edit/{id}',['as'=>'admin.user.edit','uses'=>'UserController@getEdit']);
 			Route::post('edit/{id}',['as'=>'admin.user.postEdit','uses'=>'UserController@postEdit']);
 			Route::post('edit/{id}',['as'=>'admin.user.postEdit','uses'=>'UserController@postEdit']);
-			
+
 	});
 
 	//-------------------------------------------School------------------------------------------
@@ -64,6 +64,10 @@ Route::group(['prefix'=>'admin','middleware' => ['can:admin']],function(){
 
     Route::group(['prefix'=>'statistic'],function(){
         Route::get('/', 'StatisticController@index');
+    });
+
+    Route::group(['prefix'=>'report'],function(){
+        Route::get('/', 'StatisticController@report');
     });
 
 

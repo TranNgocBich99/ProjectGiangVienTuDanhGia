@@ -37,7 +37,7 @@
 
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 	<link type= "text/css" rel="stylesheet" href="{{asset('css/admin/main.css')}}">
-	
+
 </head>
 
 <body>
@@ -74,7 +74,7 @@
 										<li class="header__navbar-user-item">
 											<a href="/">Trở về trang chủ</a>
 										</li>
-										
+
 										<li class="header__navbar-user-item">
 											<a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Đăng xuất') }}</a>
 										</li>
@@ -140,7 +140,7 @@
                                     <a href="{{ url('admin/statistic') }}">Xem thống kê</a>
                                 </li>
 								<li>
-                                    <a href="">Xuất thống kê</a>
+                                    <a href="{{ url('admin/report') }}">Xuất thống kê</a>
                                 </li>
                             </ul>
                         </li>
