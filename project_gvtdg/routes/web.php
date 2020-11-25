@@ -58,6 +58,12 @@ Route::group(['prefix'=>'admin','middleware' => ['can:admin']],function(){
 	//-------------------------------------------Science------------------------------------------
 	Route::group(['prefix'=>'science'],function(){
 		Route::get('ajax_get_science','ScienceController@ajax_get_science')->name('ajax_get_science');
+		Route::get('list/{id}',['as'=>'admin.science.getList','uses'=>'ScienceController@getList']);
+		Route::get('add',['as'=>'admin.science.add','uses'=>'ScienceController@getAdd']);
+		Route::post('add',['as'=>'admin.science.postAdd','uses'=>'ScienceController@postAdd']);
+		Route::get('delete/{id}',['as'=>'admin.science.delete','uses'=>'ScienceController@getDelete']);
+		Route::get('edit/{id}',['as'=>'admin.science.edit','uses'=>'ScienceController@getEdit']);
+		Route::post('edit/{id}',['as'=>'admin.science.postEdit','uses'=>'ScienceController@postEdit']);
 	});
 
     //statistic
