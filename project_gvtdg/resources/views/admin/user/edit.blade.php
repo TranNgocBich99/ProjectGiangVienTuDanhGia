@@ -110,7 +110,7 @@
 				<div class = "my_school">
 					<label  class="col-lg-2 label_data">Trường</label>
 					<select  class="form-control input_data" name="school" id="school" style="width:300px">
-						<option value="-1">Chọn trường</option>
+						<option value="">Chọn trường</option>
 						@foreach($listSchool as $item)
 						  <option value="{!! $item->sch_id !!}" @if("$item->sch_id" == "$user->us_id_school") selected @endif >{!! $item->sch_name !!}</option>
 						@endforeach

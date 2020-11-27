@@ -94,6 +94,7 @@ class UserController extends Controller
 			'email' => 'required|email|unique:users,email',
 			'password' => 'required|min:8|max:32',
 			'passwordAgain' => 'same:password',
+			'school' => 'required|numeric',
 		],[
 			'avatar.image' => 'Chọn avartar người dùng với định dạng ảnh',
 			'avatar.mimes' => 'ảnh đại diện người dùng phải có 1 trong các định dạng jpeg,png,jpg,gif,svg',
@@ -107,27 +108,10 @@ class UserController extends Controller
 			'password.required' => 'Bạn chưa nhập mật khẩu',
 			'password.min' => 'Mật khẩu phải có ít nhất 8 ký tự',
 			'password.max' => 'Mật khẩu chỉ được tối đa 32 ký tự',
-			'passwordAgain.same' => 'Mật khẩu nhập lại không đúng'
+			'passwordAgain.same' => 'Mật khẩu nhập lại không đúng',
+			'school.required' => 'Hãy chọn 1 đơn vị trường',
+			'school.numeric' => 'Hãy chọn 1 đơn vị trường'
 		]);
-		if($res_school == -1){
-			$this->validate($request,[
-			
-				'school' => 'required',
-			
-			],[
-				'school.required' => 'Hãy chọn 1 đơn vị trường'
-			]);
-		}
-		if($passAgain !== ""){
-			$this->validate($request,[
-			
-				'passwordAgain' => 'required',
-			
-			],[
-				'passwordAgain.required' => 'Bạn chưa nhập lại mật khẩu'
-			]);
-			
-		}
 		$user = new User;
 		if($request->hasFile('avatar')){
 			$file = Input::file('avatar');
@@ -174,6 +158,7 @@ class UserController extends Controller
 		$this->validate($request,[
 			'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 			'name' => 'required|min:3|max:255',
+			'school' => 'required|numeric',
 		],[
 			'name.required' => 'Bạn chưa nhập tên người dùng',
 			'name.min' => 'Tên người dùng phải có ít nhất 3 ký tự',
@@ -181,6 +166,8 @@ class UserController extends Controller
 			'avatar.image' => 'Chọn avartar người dùng với định dạng ảnh',
 			'avatar.mimes' => 'ảnh đại diện người dùng phải có 1 trong các định dạng jpeg,png,jpg,gif,svg',
 			'avatar.max' => 'Dung lượng tối đa của ảnh là 2048 kb',
+			'school.required' => 'Hãy chọn 1 đơn vị trường',
+			'school.numeric' => 'Hãy chọn 1 đơn vị trường'
 		]);
 		$user = new user;
 		$user = user::find($id);
@@ -188,7 +175,7 @@ class UserController extends Controller
 		$user->us_is_admin = $data['role']; 
 		if($request->changePass == "on"){
 			$this->validate($request,[
-				
+				'school' => 'required|numeric',
 				'password' => 'required|min:8|max:32',
 				'passwordAgain' => 'required|same:password'
 			],[
