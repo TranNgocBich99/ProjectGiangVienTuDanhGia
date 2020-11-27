@@ -16,12 +16,13 @@ use Carbon\Carbon;
 class ScienceController extends Controller
 {
    
-    public function getList()
-    {
-		$science = new Science;
-		$listSchool = $science->GetAllScience();
-		return view('admin.school.list',compact('listSchool'));
-    }
+  //   public function getList()
+  //   {
+		// $science = new Science;
+		// $listScience = $science->GetAllScience();
+		// return view('admin.science.list',compact('listScience'));
+  //   }
+    
 	public function ajax_get_science(Request $request){
 		echo "sssssssssssssssssss";
 		//call_user_func('layXaPhuongTheoQuanHuyen');
@@ -31,78 +32,66 @@ class ScienceController extends Controller
 		$title="Chọn khoa";	
 		return Response(view('admin.ajax_view.list_science',compact('data','title'))); 
 	}
+	
+	public function getList($id){
+		$science = new Science;
+		$session_id = session()->getId();
+		$listScience = $science->getSciencesBySchId($id);
+		return view('admin.science.list',compact('listScience')); 
+	}
+
 	//add
 	public function getAdd(){
-		return view('admin.school.add');
+		$list = School::all();
+		return view('admin.science.add', compact('list'));
 	}
 	public function postAdd(Request $request){
+
 		$data = $request->all();
 		$this->validate($request,[
-			'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 			'name' => 'required|min:3|max:255',
-			'email' => 'required|email|unique:schools,email',
-			'password' => 'required|min:8|max:32',
-			'passwordAgain' => 'same:password'
 		],[
-			'avatar.image' => 'Chọn avartar người dùng với định dạng ảnh',
-			'avatar.mimes' => 'ảnh đại diện người dùng phải có 1 trong các định dạng jpeg,png,jpg,gif,svg',
-			'avatar.max' => 'Dung lượng tối đa của ảnh là 2048 kb',
 			'name.required' => 'Bạn chưa nhập tên người dùng',
 			'name.min' => 'Tên người dùng phải có ít nhất 3 ký tự',
 			'name.max' => 'Tên người dùng chỉ được tối đa 255 ký tự',
-			'email.required' => 'Bạn chưa nhập Email',
-			'email.email' => 'Bạn chưa nhập đúng định dạng Email', 
-			'email.unique' => 'Email đã tồn tại',
-			'password.required' => 'Bạn chưa nhập mật khẩu',
-			'password.min' => 'Mật khẩu phải có ít nhất 8 ký tự',
-			'password.max' => 'Mật khẩu chỉ được tối đa 32 ký tự',
-			'passwordAgain.same' => 'Mật khẩu nhập lại không đúng'
 		]);
-		$school = new school;
-		$school->us_name = $data['name'];
-		$school->email = $data['email'];
-		$school->us_is_admin = $data['type'];   
-		$school->password = bcrypt($data['password']);
-		$school->save();
+		$science = new Science;
+		$science->sci_name = $data['name'];
+		$science->sci_id_school = $data['school'];
+		$science->save();
 		return redirect()->route('admin.school.getList')->with(['flash_level'=>'success','flash_message'=>'Thêm thành công']);
 	}
+
 	//delete
 	public function getDelete($id){
-		school::destroy($id);
+		science::destroy($id);
 		return redirect()->route('admin.school.getList')->with(['flash_level'=>'success','flash_message'=>'Xóa thành công']);
 	}
 	
 	//edit
 	public function getEdit($id){
-		$school = DB::table('school')->where('school.sch_id',$id)->select('school.*')->limit(1)->get();
-		if(count($school)==0){
+		$science = DB::table('science')->where('science.sci_id',$id)->select('science.*')->limit(1)->get();
+		if(count($science)==0){
 			return getList();
 		}
-		$school=$school[0];
-		return view('admin.school.edit',compact('school'));
+		$science=$science[0];
+		return view('admin.science.edit',compact('science','id'));
 	}
 	
 	public function postEdit($id,Request $request){
 		$data = $request->all();
 	
 		$this->validate($request,[
-			'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 			'name' => 'required|min:3|max:255',
 		],[
 			'name.required' => 'Bạn chưa nhập tên người dùng',
 			'name.min' => 'Tên người dùng phải có ít nhất 3 ký tự',
 			'name.max' => 'Tên người dùng chỉ được tối đa 255 ký tự',
-			'avatar.image' => 'Chọn avartar người dùng với định dạng ảnh',
-			'avatar.mimes' => 'ảnh đại diện người dùng phải có 1 trong các định dạng jpeg,png,jpg,gif,svg',
-			'avatar.max' => 'Dung lượng tối đa của ảnh là 2048 kb',
 		]);
-		$school = new school;
-		$school = school::find($id);
-		$school->us_name = $data['name'];
-		$school->us_is_admin = $data['type']; 
-		$school->save();
+		$science = new Science;
+		$science = Science::find($id);
+		$science->sci_name = $data['name']; 
+		$science->save();
 		return redirect()->route('admin.school.getList')->with('admin.thongbao','Sửa thành công');
-
 	}
-	
 }

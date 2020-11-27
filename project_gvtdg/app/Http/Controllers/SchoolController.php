@@ -53,7 +53,11 @@ class schoolController extends Controller
 
 	//delete
 	public function getDelete($id){
-		school::destroy($id);
+		$data =DB::table('school')
+                    ->leftJoin('science','school.sch_id', '=','science.sci_id_school')
+                    ->where('school.sch_id', $id); 
+        DB::table('science')->where('sci_id_school', $id)->delete();                           
+        $data->delete();
 		return redirect()->route('admin.school.getList')->with(['flash_level'=>'success','flash_message'=>'Xóa thành công']);
 	}
 	

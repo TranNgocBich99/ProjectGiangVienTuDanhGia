@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '3e8ded6fce13adadd7d25023a548709130efc61d',
+    'reference' => '6d67f2d6eaa1a1ff1acae2d432adef376bd1e601',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -54,12 +54,12 @@
     ),
     'doctrine/instantiator' => 
     array (
-      'pretty_version' => '1.3.1',
-      'version' => '1.3.1.0',
+      'pretty_version' => '1.4.0',
+      'version' => '1.4.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'f350df0268e904597e3bd9c4685c53e0e333feea',
+      'reference' => 'd56bf6102915de5702778fe20f2de3b2fe570b5b',
     ),
     'doctrine/lexer' => 
     array (
@@ -81,12 +81,12 @@
     ),
     'egulias/email-validator' => 
     array (
-      'pretty_version' => '2.1.23',
-      'version' => '2.1.23.0',
+      'pretty_version' => '2.1.24',
+      'version' => '2.1.24.0',
       'aliases' => 
       array (
       ),
-      'reference' => '5fa792ad1853ae2bc60528dd3e5cbf4542d3c1df',
+      'reference' => 'ca90a3291eee1538cd48ff25163240695bd95448',
     ),
     'erusev/parsedown' => 
     array (
@@ -370,7 +370,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '3e8ded6fce13adadd7d25023a548709130efc61d',
+      'reference' => '6d67f2d6eaa1a1ff1acae2d432adef376bd1e601',
     ),
     'laravel/tinker' => 
     array (
@@ -419,15 +419,15 @@
     ),
     'myclabs/deep-copy' => 
     array (
-      'pretty_version' => '1.10.1',
-      'version' => '1.10.1.0',
+      'pretty_version' => '1.10.2',
+      'version' => '1.10.2.0',
       'aliases' => 
       array (
       ),
-      'reference' => '969b211f9a51aa1f6c01d1d2aef56d3bd91598e5',
+      'reference' => '776f831124e9c62e1a2c601ecc52e776d8bb7220',
       'replaced' => 
       array (
-        0 => '1.10.1',
+        0 => '1.10.2',
       ),
     ),
     'nesbot/carbon' => 

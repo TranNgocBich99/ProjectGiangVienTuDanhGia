@@ -4,7 +4,7 @@
 			<div class = "col-lg-12">
 					<h1 class="page-header">Trường
 						<small>Sửa</small>
-						<a title ="Thêm người dùng" href="{{route('admin.school.add')}}" style="float: right;color:#4ed7e4">
+						<a title ="Thêm người dùng" href="{{route('admin.science.getList', $school->sch_id)}}" style="float: right;color:#4ed7e4">
 							<button style = "color: #fff;background-color: #149c89;font-weight:bold" class="btn btn-default">Danh sách khoa</button>
 						</a>
 					</h1>
@@ -35,8 +35,9 @@
 		<script>
 			function cancel_function(){
 				window.location.href = "{{route('admin.school.getList')}}";
-
 			}
+
+
 		</script>
 	</div>
 @endsection()
