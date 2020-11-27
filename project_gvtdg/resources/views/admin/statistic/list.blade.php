@@ -114,7 +114,7 @@
         </tbody>
         </table>
         @else
-            <p>Bạn cần chọn năm học và học kỳ</p>
+            <p class="error">Bạn cần chọn năm học và học kỳ</p>
         @endif
     </div>
 @endsection()

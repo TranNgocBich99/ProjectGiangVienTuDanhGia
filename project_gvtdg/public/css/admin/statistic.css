@@ -80,4 +80,35 @@ tr:nth-child(even) {
 }
 .content .result p span {
     font-weight: bold;
+    color: #ae1111;
+}
+.filter-data {
+    margin-bottom: 30px;
+}
+.filter-data select {
+    height: 35px;
+    width: 200px;
+    margin-right: 40px;
+}
+p.error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    padding: 15px;
+    border-radius: 4px;
+    font-weight: 600;
+    width: 92%;
+}
+select.eval-tk {
+    display: inline-block;
+    width: 90%;
+    margin-top: 30px;
+    height: 40px;
+    border-radius: 3px;
+    border: 1px solid #cccccc;
+}
+td.dataTables_empty {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
 }

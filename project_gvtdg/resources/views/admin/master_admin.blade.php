@@ -183,8 +183,13 @@
     <script src="{{asset('css/admin/bower_components/metisMenu/dist/metisMenu.min.js')}}"></script>
 	<!-- Custom Theme JavaScript -->
     <script src="{{asset('css/admin/dist/js/sb-admin-2.js')}}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
 	<script src="{{asset('css/admin/js/myscript.js')}}"></script>
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+
+
 </body>
 
 </html>

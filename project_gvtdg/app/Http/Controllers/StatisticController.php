@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Evaluation;
 use App\Semester;
 use App\Statistic;
 use App\User;
@@ -24,9 +25,27 @@ class StatisticController extends Controller
         $selID = $request->post('se_id', '');
         $evalID = $request->post('eval_id', '');
 
+        //Get Semester year data
+        $seModel = new Semester();
+        $listYears = $seModel->getListYears();
+
+        $listSe = new \Illuminate\Support\Collection();
+        if(!empty($yearInput)){
+            $listSe = $seModel->getListSeByYears($yearInput);
+        }
+
+        $evalModel = new Evaluation();
+        $listEval = $evalModel->GetAllEvaluations();
+
         //Độ lệch chuẩn
-        $evalModel = new User_sem_eval();
-        $report = $evalModel->getReportData($selID, $evalID);
+        $semEvalModel = new User_sem_eval();
+        $report = $semEvalModel->getReportData($selID, $evalID);
+        $number_user_rate = $semEvalModel->getNumberUserRate($selID, $evalID);
+        if(!$number_user_rate->isEmpty()){
+            $number = $number_user_rate[0]->count;
+        }else{
+            $number = 1;
+        }
         $data = [];
         $tc = [
             '1' => 'Rất không tốt',
@@ -45,7 +64,7 @@ class StatisticController extends Controller
                             'rate_id' => $item,
                             'rate_name' => $tc[$item],
                             'count' => $val->count,
-                            'percent' => ($val->count/count($keys_tc)) *100
+                            'percent' => number_format(($val->count/$number) *100, 2)
                         ];
                     }else{
                         if(!isset($data[$item])) {
@@ -61,9 +80,19 @@ class StatisticController extends Controller
             }
         }
 
-        dd($data);
+        $dataChart = [
+            'percent' => [],
+            'label' => []
+        ];
+        if(!empty($data)){
+            foreach ($data as $key => $val){
+                $dataChart['percent'][] = $val['percent'];
+                $dataChart['label'][] = $val['rate_name'] . ' ('. $val['count'] .' đánh giá)';
+            }
+        }
 
-        return view('admin.statistic.report', compact('$data', 'status', 'ratio', 'point', 'listYears', 'listSe', 'dlcDataRes'));
+
+        return view('admin.statistic.report', compact('data', 'dataChart','listYears', 'listSe', 'listEval'));
     }
 
     public function index(Request $request) {

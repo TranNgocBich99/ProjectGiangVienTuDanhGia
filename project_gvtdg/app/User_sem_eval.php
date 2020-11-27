@@ -16,6 +16,16 @@ class User_sem_eval extends Authenticatable
 
 	protected $primaryKey = 'id';
 
+    public function getNumberUserRate($se_id, $eval_id){
+        $data = DB::table($this->getTable())
+            ->select(DB::raw('COUNT(eval_id) as count'))
+            ->where('se_id', $se_id)
+            ->where('eval_id', $eval_id)
+            ->groupBy('eval_id')
+            ->get();
+        return $data;
+    }
+
     public function getReportData($se_id, $eval_id){
         $data = DB::table($this->getTable())
             ->select('user_rate_point as point', DB::raw('COUNT(user_rate_point) as count'))
