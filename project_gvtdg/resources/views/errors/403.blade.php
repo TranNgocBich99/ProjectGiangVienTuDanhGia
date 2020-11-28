@@ -12,7 +12,7 @@
 						
 						<div class="card-body">
 							<h3>Bạn không có quyền truy cập vào đường dẫn này.</h3>
-							<a href = "/">Trở về trang chủ</a>
+							<a href = "{{route('home')}}">Trở về trang chủ</a>
 						</div>
 					</div>
 				</div>
