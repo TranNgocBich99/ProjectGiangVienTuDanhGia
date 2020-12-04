@@ -55,9 +55,9 @@
 	</div>
 	
 	<div class="container">
-		@include('admin.block.error')
+		@include('admin.block.error')	
 		@include('admin.thongbao')
-		<form action="{!! URL::route('post_form') !!}" method="POST" enctype="multipart/form-data">
+		<form action="{!! URL::route('teacher.postForm') !!}" method="POST" enctype="multipart/form-data">
 			<div class="select_year_sem col-md-12">
 				<div class="select_item col-md-6">
 					<div class="sub_item col-md-6" style="float: right;padding: 0;">

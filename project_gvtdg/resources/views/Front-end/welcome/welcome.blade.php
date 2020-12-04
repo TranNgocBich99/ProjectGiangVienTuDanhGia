@@ -62,7 +62,7 @@
 																		color: #8e7f7f;" 
 																	class = "btn btn-gray btn-small user_profile">Trang quản trị »</a>
 															@else
-																<a href = "{!! URL::route('getForm', Auth::user()->us_id) !!}" 
+																<a href = "{!! URL::route('teacher.getForm', Auth::user()->us_id) !!}" 
 																	style = "
 																		font-size: .8em;
 																		padding: 0.50em .75em;
