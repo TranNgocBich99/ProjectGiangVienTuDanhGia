@@ -17,8 +17,14 @@ Route::post('dangki',['as'=>'postDangki','uses'=>'RegisterController@postDangki'
 Route::get('dangki',['as'=>'getDangki','uses'=>'RegisterController@getDangki']);
 
 Auth::routes();
-Route::get('form','UserController@getForm')->name('getForm');
+Route::get('teacher/{id}/form','UserController@getForm')->name('getForm');
 Route::post('post_form','UserController@post_form')->name('post_form');
+
+Route::get('ajax_get_semester','SemesterController@ajax_get_semester')->name('ajax_get_semester');
+Route::get('ajax_get_list_eval','EvaluationController@ajax_get_list_eval')->name('ajax_get_list_eval');
+
+
+
 
 // ------------------------------------------- Edit profile --------------------------------------
 

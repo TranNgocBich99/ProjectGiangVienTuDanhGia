@@ -24,8 +24,6 @@ class ScienceController extends Controller
   //   }
     
 	public function ajax_get_science(Request $request){
-		echo "sssssssssssssssssss";
-		//call_user_func('layXaPhuongTheoQuanHuyen');
 		$science = new Science;
 		$sch_id = $_GET['sch_id'];
 		$data = $science->getSciencesBySchId($sch_id);

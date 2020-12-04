@@ -28,9 +28,9 @@ class LoginController extends Controller
      */  
 	protected function authenticated(Request $request, $user)
 	{
-		if ($user->	status === 0 && $user->us_is_admin === 2) {
-			return redirect()->route('getForm');
-		}
+		//if ($user->	status === 0 && $user->us_is_admin === 2) {
+		//	return redirect()->route('getForm');
+		///}
 		return redirect('/');
 	}
     

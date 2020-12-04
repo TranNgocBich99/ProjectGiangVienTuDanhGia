@@ -6,16 +6,18 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use DB;
-use App\news;
-use App\Product;
-use App\Service;
+use App\User_sem_eval;
+use App\User_self_think;
 use App\User;
 use App\Evaluation;
+use App\Semester;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon; 
+use Auth;
+
 class EvaluationController extends Controller
 {
    	
@@ -79,4 +81,33 @@ class EvaluationController extends Controller
 		
 	}
 	
+	public function ajax_get_list_eval(Request $request){
+		if(Auth::user() == null){
+			return;
+		}
+		$us_id = Auth::user()->us_id;
+		$user = new user;
+		$user = user::find($us_id);
+		$evaluation = new Evaluation;
+		$user_sem_eval = new User_sem_eval;
+		$se_id = $_GET['se_id'];
+		$thinkOfUser=[];
+		$listEvalOfUser=[];
+		$semester = new Semester;
+		$user_self_think = new User_self_think;
+		$user_sem_val = new User_sem_eval;
+		if($se_id != -1){
+			$thinkOfUser = $user_self_think->getThinkOfUser($us_id,$se_id);
+			$listEvalOfUser = $user_sem_eval->getAllEvalOfUserSem($us_id,$se_id);
+		}
+		$nhiem_vu = $evaluation->GetAllEvaluationsByCategory(6);
+		$thong_tin_hoc_phan = $evaluation->GetAllEvaluationsByCategory(7);
+		$kiem_tra_danh_gia = $evaluation->GetAllEvaluationsByCategory(8);
+		$hoat_dong_quan_tri = $evaluation->GetAllEvaluationsByCategory(9);
+		$cong_tac_ho_tro = $evaluation->GetAllEvaluationsByCategory(10);
+		return Response(view('Front-end.ajax_view.list_eval_of_semester',
+							compact('nhiem_vu','thong_tin_hoc_phan',
+							'kiem_tra_danh_gia','hoat_dong_quan_tri',
+							'cong_tac_ho_tro','listEvalOfUser','thinkOfUser'))); 
+	}
 }

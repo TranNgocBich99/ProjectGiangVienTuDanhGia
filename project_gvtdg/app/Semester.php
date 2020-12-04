@@ -27,4 +27,14 @@ class Semester extends Model
             ->get();
         return $data;
     }
+	
+	public function getSemesterByUserID($us_id){
+		$semester = DB::table($this->getTable())
+            ->join('user_eval_sem', 'user_eval_sem.se_id', '=', 'semester.se_id')
+			->where('user_eval_sem.us_id','=',$us_id)
+			->select('semester.se_id','semester.se_year','semester.se_name')
+			->orderBy('semester.se_year', 'desc')
+            ->first();
+        return $semester;
+	}
 }

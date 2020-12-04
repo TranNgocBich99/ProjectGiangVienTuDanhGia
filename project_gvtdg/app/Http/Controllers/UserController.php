@@ -11,6 +11,7 @@ use App\User;
 use App\User_self_think;
 use App\Evaluation;
 use App\Science;
+use App\Semester;
 use App\User_sem_eval;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -37,39 +38,96 @@ class UserController extends Controller
 		return view('admin.user.list',compact('listUsers'));
     }
 	
-	public function getForm(){
+	public function getForm($us_id){
+		$user = new user;
+		$user = user::find($us_id);
+		$listEvalOfUser=[];
+		$semester = new Semester;
+		$sem=null;
+		$listSemester=[];
+		$thinkOfUser=[];
+		if($user->status == 1){
+			$user_self_think = new User_self_think;
+			$user_sem_val = new User_sem_eval;
+			$sem = $semester->getSemesterByUserID($us_id);
+			if($sem != null && isset($sem)){
+				$listSemester = $semester->getListSeByYears($sem->se_year);
+				$thinkOfUser = $user_self_think->getThinkOfUser($us_id,$sem->se_id);
+				$listEvalOfUser = $user_sem_val->getAllEvalOfUserSem($us_id,$sem->se_id);
+			}
+		}
+		$listYear = $semester->getListYears();
 		$eval = new Evaluation;
 		$listEval = $eval->GetAllEvaluations();
-		//print_r($listEval);
 		$nhiem_vu = $eval->GetAllEvaluationsByCategory(6);
 		$thong_tin_hoc_phan = $eval->GetAllEvaluationsByCategory(7);
 		$kiem_tra_danh_gia = $eval->GetAllEvaluationsByCategory(8);
 		$hoat_dong_quan_tri = $eval->GetAllEvaluationsByCategory(9);
 		$cong_tac_ho_tro = $eval->GetAllEvaluationsByCategory(10);
-		return view('Front-end.user.form',compact('nhiem_vu','thong_tin_hoc_phan','kiem_tra_danh_gia','hoat_dong_quan_tri','cong_tac_ho_tro'));
+		return view('Front-end.user.form',compact('nhiem_vu',
+							'thong_tin_hoc_phan',
+							'kiem_tra_danh_gia','hoat_dong_quan_tri',
+							'cong_tac_ho_tro','listEvalOfUser',
+							'listYear','sem','listSemester','thinkOfUser'));
 	}
 	
 	public function post_form(Request $request){
+		if(Auth::user() == null){
+			return;
+		}
 		$id = Auth::user()->us_id;
 		$user = new User;
 		$user = user::find($id);
 		$data = $request->all();
+		$count_eval=0;
+		$this->validate($request,[
+			'year' => 'required|numeric',
+			'semester' => 'required|numeric',
+		],[
+			'year.required' => 'Hãy chọn năm học',
+			'year.numeric' => 'Hãy chọn năm học',
+			'semester.required' => 'Hãy chọn học kỳ',
+			'semester.numeric' => 'Hãy chọn học kỳ',
+		]);
+		foreach($data as $eval_id => $point) {
+			if(!is_numeric($eval_id)){
+				continue;
+			}
+			$count_eval++;
+		}
+		//$this->validate($request,[
+		//	'count_record' => 'same:$count_eval',
+		//],[
+		///	'count_record.same' => 'Hãy đánh giá tất cả các tiêu chí.',
+		///]);
+		$se_id = $data["semester"];
+		$us_self_think = $data['user_self_think'];;
+		$user_self_think = new User_self_think;
 		if(count($data) > 0){
-			if($data['user_self_think'] != ""){
-				$user_self_think = new User_self_think;
+			$thinkOfUser = $user_self_think->getThinkOfUser($id,$se_id);
+			if(count($thinkOfUser)>0){
+				$update_think_us = User_self_think::find($thinkOfUser[0]->id);
+				$update_think_us->us_self_think = $us_self_think;
+				$update_think_us->save();
+			}elseif($us_self_think != null){
 				$user_self_think->us_id = $id;
-				$user_self_think->se_id = 4;
-				$user_self_think->us_self_think = $data['user_self_think'];
+				$user_self_think->se_id = $se_id;
+				$user_self_think->us_self_think = $us_self_think;
 				$user_self_think->save();
 			}
 			foreach($data as $eval_id => $point) {
 				if(!is_numeric($eval_id)){
 					continue;
 				}
+				$count_eval++;
 				$user_sem_val = new User_sem_eval;
+				$us_sem_eval_ID=$user_sem_val->getRecordOfUserSemID($id,$se_id,$eval_id);
+				if($user->status==1 && count($us_sem_eval_ID)>0){
+					$user_sem_val = User_sem_eval::find($us_sem_eval_ID[0]->id);
+				}
 				$user_sem_val->us_id = $id;
 				$user_sem_val->eval_id = $eval_id;
-				$user_sem_val->se_id  = 4;
+				$user_sem_val->se_id  = $se_id;
 				$user_sem_val->user_rate_point = $point;
 				$user_sem_val->save();	
 			}

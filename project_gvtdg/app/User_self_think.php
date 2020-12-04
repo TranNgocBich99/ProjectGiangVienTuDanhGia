@@ -16,4 +16,11 @@ class User_self_think extends Authenticatable
 	
 	protected $primaryKey = 'id';
   
+	public function getThinkOfUser($us_id,$se_id){
+		$data = DB::table($this->getTable())
+            ->where('us_id', $us_id)
+            ->where('se_id', $se_id)
+			->get();
+        return $data;
+	}
 }

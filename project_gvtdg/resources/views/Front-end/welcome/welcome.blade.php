@@ -45,10 +45,10 @@
 													<div class = "img_user_data">
 														<a title = "Admin" href = "#" style = "display:block;margin:0" ><img class = "img-circle" src = "{{asset(Auth::user()->us_avatar)}}"/></a>
 														<div class = "user_data">
+															<span class = "name_user" style = "display: block">
+																	<p title = "{{ Auth::user()->us_name }}">{{ Auth::user()->us_name }}</p>
+															</span>
 															@if(Auth::user()->us_is_admin === 1)   
-																<span class = "name_user" style = "display: block">
-																		<p title = "{{ Auth::user()->us_name }}">Admin: {{ Auth::user()->us_name }}</p>
-																</span>
 																<a href = "{{route('admin.user.getList')}}" 
 																	style = "
 																		font-size: .8em;
@@ -62,7 +62,18 @@
 																		color: #8e7f7f;" 
 																	class = "btn btn-gray btn-small user_profile">Trang quản trị »</a>
 															@else
-																<p title = "{{ Auth::user()->us_name }}">User: {{ Auth::user()->us_name }}</p>
+																<a href = "{!! URL::route('getForm', Auth::user()->us_id) !!}" 
+																	style = "
+																		font-size: .8em;
+																		padding: 0.50em .75em;
+																		background-color: #E3E9ED;
+																		float: left;
+																		display: block;
+																		margin-left: 21px;
+																		font-weight: bold;
+																		font-size: 13px;
+																		color: #8e7f7f;" 
+																	class = "btn btn-gray btn-small user_profile">Phiếu đánh giá »</a>
 															@endif
 														</div>
 													</div>
