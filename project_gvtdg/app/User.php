@@ -5,7 +5,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use DB;
-class User extends Authenticatable 
+class User extends Authenticatable
 {
 	use Notifiable;
 	protected $table = 'users';
@@ -34,7 +34,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 	protected $primaryKey = 'us_id';
-  
+
 	public function GetAllUsers(){
 		$data = DB::table('users')
             ->join('school', 'users.us_id_school', '=', 'school.sch_id')
@@ -42,5 +42,12 @@ class User extends Authenticatable
             ->get();
 		return $data;
 	}
+
+	public function getUserBySchool($school){
+        $data = DB::table('users')
+            ->where('us_id_school', $school)
+            ->get();
+        return $data;
+    }
 
 }

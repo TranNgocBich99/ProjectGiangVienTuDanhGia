@@ -4,7 +4,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class Statistic extends Authenticatable
 {
@@ -20,17 +20,19 @@ class Statistic extends Authenticatable
 		$data = DB::table($this->table)->get();
 		return $data;
 	}
-	public function status() {
+	public function status($school) {
 	    $data = DB::table('users')
             ->where('status', 1)
+            ->where('us_id_school', $school)
 	        ->get();
 	    return $data;
     }
-    public function averageScore($se_id) {
+    public function averageScore($se_id, $users) {
 	    $data = DB::table('evaluation')
             ->join('user_eval_sem', 'evaluation.eva_id', '=', 'user_eval_sem.eval_id')
             ->select('evaluation.eva_id', 'user_eval_sem.user_rate_point as a', 'evaluation.eva_name', DB::raw('sum(user_eval_sem.user_rate_point) as point, COUNT(user_eval_sem.eval_id) as number_user'))
             ->where('se_id', $se_id)
+            ->whereIn('us_id', $users)
             ->groupBy('user_eval_sem.eval_id')
             ->get();
 	    return $data;

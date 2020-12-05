@@ -5,7 +5,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use DB;
-class School extends Authenticatable 
+class School extends Authenticatable
 {
 	use Notifiable;
 	protected $table = 'school';
@@ -14,10 +14,10 @@ class School extends Authenticatable
     ];
 
 	protected $primaryKey = 'sch_id';
-  
+
 	public function GetAllSchool(){
 		$data = DB::table($this->table)->get();
 		return $data;
 	}
-	
+
 }

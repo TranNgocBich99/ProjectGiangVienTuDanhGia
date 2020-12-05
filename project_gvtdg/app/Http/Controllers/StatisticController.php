@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Evaluation;
+use App\School;
 use App\Semester;
 use App\Statistic;
 use App\User;
@@ -21,9 +22,22 @@ class StatisticController extends Controller
     }
 
     public function report(Request $request) {
+        $schoolInput = $request->post('school', '');
         $yearInput = $request->post('year', '');
         $selID = $request->post('se_id', '');
         $evalID = $request->post('eval_id', '');
+
+        $userModel = new User();
+        $allUserBySchool = $userModel->getUserBySchool($schoolInput);
+        if(!$allUserBySchool->isEmpty()){
+            $listUser = [];
+            foreach ($allUserBySchool as $usr){
+                array_push($listUser, $usr->us_id);
+            }
+        }else{
+            $listUser = [];
+        }
+
 
         //Get Semester year data
         $seModel = new Semester();
@@ -37,10 +51,14 @@ class StatisticController extends Controller
         $evalModel = new Evaluation();
         $listEval = $evalModel->GetAllEvaluations();
 
+        //getListSchool
+        $schoolModel = new School();
+        $listSchools = $schoolModel->GetAllSchool();
+
         //Độ lệch chuẩn
         $semEvalModel = new User_sem_eval();
-        $report = $semEvalModel->getReportData($selID, $evalID);
-        $number_user_rate = $semEvalModel->getNumberUserRate($selID, $evalID);
+        $report = $semEvalModel->getReportData($selID, $evalID, $listUser);
+        $number_user_rate = $semEvalModel->getNumberUserRate($selID, $evalID, $listUser);
         if(!$number_user_rate->isEmpty()){
             $number = $number_user_rate[0]->count;
         }else{
@@ -92,21 +110,45 @@ class StatisticController extends Controller
         }
 
 
-        return view('admin.statistic.report', compact('data', 'dataChart','listYears', 'listSe', 'listEval'));
+        return view('admin.statistic.report', compact('data', 'dataChart','listYears', 'listSchools', 'listSe', 'listEval'));
     }
 
     public function index(Request $request) {
+        $schoolInput = $request->post('school', '');
         $yearInput = $request->post('year', '');
         $selID = $request->post('se_id', '');
-        $user = User::all();
-        $totalUser = count($user);
-        $status = count($this->model->status());
-        $ratio = $status/$totalUser;
-        $point = $this->model->averageScore($selID);
+
+        $userModel = new User();
+        $allUserBySchool = $userModel->getUserBySchool($schoolInput);
+
+        $totalUser = $allUserBySchool->count();
+
+        $status = count($this->model->status($schoolInput));
+
+        if($totalUser > 0) {
+            $ratio = $status / $totalUser;
+        }else{
+            $ratio = 0;
+        }
+
+        if(!$allUserBySchool->isEmpty()){
+            $listUser = [];
+            foreach ($allUserBySchool as $usr){
+                array_push($listUser, $usr->us_id);
+            }
+        }else{
+            $listUser = [];
+        }
+
+        $point = $this->model->averageScore($selID, $listUser);
 
         //Get Semester year data
         $seModel = new Semester();
         $listYears = $seModel->getListYears();
+
+        //getListSchool
+        $schoolModel = new School();
+        $listSchools = $schoolModel->GetAllSchool();
 
         $listSe = new \Illuminate\Support\Collection();
         if(!empty($yearInput)){
@@ -115,7 +157,7 @@ class StatisticController extends Controller
 
         //Độ lệch chuẩn
         $evalModel = new User_sem_eval();
-        $dlcData = $evalModel->getAllData();
+        $dlcData = $evalModel->getAllData($listUser);
         $dlcDataRes = [];
         if(!$dlcData->isEmpty()){
             foreach ($dlcData as $key => $item){
@@ -123,7 +165,7 @@ class StatisticController extends Controller
             }
         }
 
-        return view('admin.statistic.list', compact('totalUser', 'status', 'ratio', 'point', 'listYears', 'listSe', 'dlcDataRes'));
+        return view('admin.statistic.list', compact('totalUser', 'status', 'ratio', 'point', 'listYears', 'listSchools', 'listSe', 'dlcDataRes'));
     }
 
 }

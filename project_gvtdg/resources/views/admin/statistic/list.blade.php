@@ -23,6 +23,30 @@
             <p class="year">(Năm học 2020 - 2021)</p>
         </div>
     </div>
+
+    <div class="select-school">
+        @php
+            $school = request()->get('school', '');
+            $year = request()->get('year', '');
+            $se_id = request()->get('se_id', '');
+        @endphp
+        <form method="GET">
+            <input type="hidden" name="year" value="{{$year}}" />
+            <input type="hidden" name="se_id" value="{{$se_id}}" />
+            <label>
+                <span>Trường</span>
+                <select name="school" onchange="this.form.submit();">
+                    <option @if($school == '') selected @endif value="">---Trường---</option>
+                    @if(!$listSchools->isEmpty())
+                        @foreach($listSchools as $key => $val)
+                            <option @if($school == $val->sch_id) selected @endif value="{{$val->sch_id}}">{{$val->sch_name}}</option>
+                        @endforeach
+                    @endif
+                </select>
+            </label>
+        </form>
+    </div>
+
     <div class="content">
         <h3>Phần A. Thống kê chung</h3>
         <div class="result">
@@ -31,12 +55,9 @@
             <p>- Tỷ lệ:<span> {{ $result }}%</span> </p>
         </div>
         <h3>Phần B. Kết quả tổng hợp ý kiến giảng viên</h3>
-        @php
-            $year = request()->get('year', '');
-            $se_id = request()->get('se_id', '');
-        @endphp
         <div class="filter-data">
             <form method="GET">
+                <input type="hidden" name="school" value="{{$school}}" />
                 <label>
                     <span>Năm học</span>
                     <select name="year" onchange="this.form.submit();">
@@ -62,7 +83,7 @@
                 </label>
             </form>
         </div>
-        @if(!empty($year) && !empty($se_id))
+        @if(!empty($school) && !empty($year) && !empty($se_id))
         <table class="table table-striped table-bordered table-hover" id="dataTables-example">
         <thead>
             <tr>
@@ -114,7 +135,7 @@
         </tbody>
         </table>
         @else
-            <p class="error">Bạn cần chọn năm học và học kỳ</p>
+            <p class="error">Bạn cần chọn trường, năm học và học kỳ</p>
         @endif
     </div>
 @endsection()

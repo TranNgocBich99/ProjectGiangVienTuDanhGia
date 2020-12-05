@@ -4,12 +4,25 @@
     <div class="content">
         <h3>Xuất thống kê</h3>
         @php
+            $school = request()->get('school', '');
             $year = request()->get('year', '');
             $se_id = request()->get('se_id', '');
             $eval_id = request()->get('eval_id', '');
         @endphp
         <div class="filter-data">
             <form method="GET">
+                <label>
+                    <span>Trường</span>
+                    <select name="school" onchange="this.form.submit();">
+                        <option @if($school == '') selected @endif value="">---Trường---</option>
+                        @if(!$listSchools->isEmpty())
+                            @foreach($listSchools as $key => $val)
+                                <option @if($school == $val->sch_id) selected @endif value="{{$val->sch_id}}">{{$val->sch_name}}</option>
+                            @endforeach
+                        @endif
+                    </select>
+                </label>
+
                 <label>
                     <span>Năm học</span>
                     <select name="year" onchange="this.form.submit();">
@@ -104,7 +117,7 @@
                 });
             </script>
         @else
-            <p class="error">Bạn cần chọn năm học và học kỳ</p>
+            <p class="error">Bạn cần chọn trường, năm học và học kỳ</p>
         @endif
     </div>
 @endsection()
