@@ -2,7 +2,15 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+<div class="col-sm-12" style="text-align: center">
+        <img src="{{asset('/uploads/home/img/logo.png')}}" alt="" >
+    </div>
+
+
+    <div class="row justify-content-center"
+    style="background-color: #6cb2ebb5; padding-top: 30px; padding-bottom: 30px"
+    >
+    
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Reset Password') }}</div>

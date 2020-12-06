@@ -2,7 +2,14 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+<img src="{{asset('/uploads/home/img/logo.png')}}" alt="" >
+    </div>
+
+
+    <div class="row justify-content-center"
+    style="background-color: #6cb2ebb5; padding-top: 30px; padding-bottom: 30px"
+    >
+    
         <div class="col-md-8">
             <div class="card">
                 <div style = "font-weight: bold; font-size: 16px;" class="card-header">{{ __('Đăng ký') }}</div>
@@ -60,22 +67,22 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
-						
+
 						 <div class="form-group row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Upload profile') }}</label>
 							<div class = "profile col-md-6" >
 								<img style = "margin-left:0 !important;margin-right:0 !important " id="avar" name = "avar" class="mx-auto d-block img-circle" width="30%" height="100%" alt="avatar" src="/uploads/customers/20190425091706.PNG" accept="image/*"/>
 							</div>
 							<div class="col-md-6 offset-md-4" style = "padding: 15px;">
-							
+
                                 <input id="user_avartar" type="file" class="form-control" name="avatar" style = "border:none; padding:0" required onchange="readURL(this);">
-								
+
                             </div>
 							<script>
 								function readURL(input) {
-										
+
 										if (input.files && input.files[0]) {
-											
+
 											var reader = new FileReader();
 
 											reader.onload = function (e) {
@@ -87,7 +94,7 @@
 											reader.readAsDataURL(input.files[0]);
 										}
 								}
-								
+
 							</script>
                         </div>
 
@@ -99,7 +106,7 @@
 								<a href = "/"  class = "cancel" style = "padding: 8px;border: 1px solid #ccc;border-radius: 3px;text-decoration: none !important;color: #000 !important;"> {{ __('Cancel') }}</a>
                             </div>
                         </div>
-				
+
                     </form>
                 </div>
             </div>

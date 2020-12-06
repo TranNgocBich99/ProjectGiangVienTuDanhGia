@@ -1,13 +1,13 @@
 <?php
 	$tlt_record = 0;
 	$tlt_record += count($nhiem_vu);
-	$tlt_record += count($thong_tin_hoc_phan); 
-	$tlt_record += count($kiem_tra_danh_gia); 
+	$tlt_record += count($thong_tin_hoc_phan);
+	$tlt_record += count($kiem_tra_danh_gia);
 	$tlt_record += count($hoat_dong_quan_tri);
 	$tlt_record += count($cong_tac_ho_tro);
 ?>
-<div class="form-group col-md-12">
-	
+<div class="form-group col-md-12">fs
+
 	<div class="content2">
 		<div class="container">
 			<h4>1. Giảng viên tự đánh giá chất lượng các nhiệm vụ đã thực hiện trong năm học</h4>
@@ -32,7 +32,7 @@
 					<th scope="col"></th>
 					<th scope="col">Các nhiệm vụ</th>
 					<th scope="col">Thang đánh giá</th>
-					
+
 				  </tr>
 				</thead>
 				<tbody>
@@ -66,7 +66,7 @@
 			  </table>
 		</div>
 	</div>
-	
+
 	<div class="content2">
 		<div class="container">
 			<h4>2. Giảng viên đánh giá các hoạt động giảng dạy và hỗ trợ giảng dạy</h4>
@@ -91,7 +91,7 @@
 					<th scope="col"></th>
 					<th scope="col">Nội dung đánh giá</th>
 					<th scope="col">Thang đánh giá</th>
-					
+
 				  </tr>
 				</thead>
 				<tbody>
@@ -99,7 +99,7 @@
 						<th scope="row"></th>
 						<td style="text-align: center; font-weight: bold">Phần 1. Thông tin về học phần và chương trình đào tạo</td>
 						<td >
-							
+
 						</td>
 						@foreach($thong_tin_hoc_phan as $item)
 							<?php $stt++;?>
@@ -156,12 +156,12 @@
 							</td>
 						</tr>
 					@endforeach
-				  
+
 					  <tr>
 						<th scope="row"></th>
 						<td style="text-align: center; font-weight: bold">Phần 3. Một số hoạt động quản trị </td>
 						<td >
-						  
+
 						  </td>
 					  </tr>
 					@foreach($hoat_dong_quan_tri as $item)
@@ -189,13 +189,13 @@
 						</td>
 					  </tr>
 					@endforeach
-				 
+
 					<tr>
 						<th scope="row"></th>
 						<td style="text-align: center; font-weight: bold">Phần 4. Công tác hỗ trợ và cơ sở vật chất phục vụ giảng dạy học phần</td>
 						<td ></td>
 					</tr>
-					
+
 					@foreach($cong_tac_ho_tro as $item)
 						<?php $stt++;?>
 					  <tr>
@@ -219,14 +219,14 @@
 								@endfor
 							@endif
 						</td>
-						
+
 					  </tr>
 					@endforeach
 				</tbody>
 			  </table>
 		</div>
 	</div>
-	
+
 	<div class="content3">
 		<div class="container">
 			<label >Các ý kiến khác của giảng viên:</label>
@@ -237,7 +237,7 @@
 			@endif
 		</div>
 	</div>
-	
+
 	<input name="count_record" value="{!!$tlt_record!!}" hidden></input>
-	
+
 </div>

@@ -19,7 +19,7 @@
 		<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-     
+
 	</head>
 	<style>
 		.input_data{
@@ -56,6 +56,9 @@
 	</style>
 	<body>
 		<div class="container">
+        <div class="col-sm-12" style="text-align: center">
+        <img src="{{asset('/uploads/home/img/logo.png')}}" alt="" >
+    </div>
 			<div class="row justify-content-center" style = "justify-content: center!important;display: flex;
 					flex-wrap: wrap;">
 				<div class="col-md-8" style = "position: relative;
@@ -71,11 +74,13 @@
 					@include('Front-end.block.error')
 					@include('Front-end.thongbao')
 					<div class = "card">
+
+
 						<div class="card-header" style = "font-weight: bold;font-size: 16px;color: #eeb10a;">{{ __('Sửa thông tin cá nhân') }}</div>
 						<div class = "card-body">
 							<form id = "validate_form" action="{{route('postProfile',$user->us_id)}}" method="POST" enctype="multipart/form-data" >
 								<input type="hidden" name="_token" value="{{ csrf_token() }}">
-							
+
 								<div class="form-group" style="width: 100%;float: left;">
 									<label class="col-lg-3 label_data">Ảnh đại diện</label>
 									<div class="input_data" style="float: left;width: 70%;">
@@ -90,29 +95,29 @@
 														$('#avar')
 															.attr('src', e.target.result)
 															.width(150)
-															.height(150);	
+															.height(150);
 													};
 													reader.readAsDataURL(input.files[0]);
 												}
 										}
 									</script>
-								</div>	
-								
-								<div class="form-group">		
+								</div>
+
+								<div class="form-group">
 									<label class="col-lg-3 label_data">Tên người dùng</label>
 									<input  class = "form-control input_data" id = "name" type = "text" name = "name" autofocus="autofocus"  value="{!! $user->us_name !!}" placeholder = "Tên người dùng"></input>
-								</div>				
-							
+								</div>
+
 								<div class="form-group">
-								
+
 									<label class="col-lg-3 label_data">
 										<input id = "changePassword" type = "checkbox" onclick="doimail(this)" name = "changeEmail"></input>
 										Đổi email
 									</label>
 									<input class = "form-control input_data" id = "email" type = "email" name = "email" autofocus="autofocus"  value="{!! $user->email !!}" placeholder = "Email" disabled=""></input>
 
-								</div>	
-							
+								</div>
+
 								<div class="form-group">
 									<label class="col-lg-3 label_data">
 										<input id = "changePassword" type = "checkbox" onclick="changePassWord(this)" name = "changePass"></input>
@@ -120,12 +125,12 @@
 									</label>
 									<input class="form-control input_data" id = "password" type = "password" name = "password" placeholder = "Đổi Mật khẩu"  disabled = ""></input>
 								</div>
-											
+
 								<div class="form-group">
 									<label class="col-lg-3 label_data">Nhập lại mật khẩu</label>
 									<input class="form-control input_data" id = "passwordAgain" type = "password" name = "passwordAgain" placeholder = "Nhập lại mật khẩu"  disabled=""></input>
 								</div>
-								
+
 								<div class="form-group">
 									<div class = "my_school">
 										<label  class="col-lg-3 label_data">Trường</label>
@@ -136,25 +141,25 @@
 											@endforeach
 										</select>
 									</div>
-								</div>	
-								
+								</div>
+
 								<div class="form-group">
 									<div class="my_science">
 										<label  class="col-lg-3 label_data">Khoa</label>
 										<select id="science" name="science" class="form-control input_data" style="width:300px">
 											<option value="-1">Chọn khoa</option>
-											@foreach($listScience as $item)	
+											@foreach($listScience as $item)
 												<option value = "{!!$item->sci_id!!}" @if("$item->sci_id" == "$user->us_sci_id") selected @endif>{!!$item->sci_name!!}</option>
 											@endforeach
 										</select>
 									</div>
-								</div>	
-					
+								</div>
+
 								<div class="submit-row form-group col-lg-12">
 									<button type="button" class="btn_cancel" onclick = "cancel_function()">Cancel</button>
 									<button type = "submit" id = "submit" type="button" class="btn_save" onclick = "save_function()">Save</button>
 								</div>
-								
+
 							</form>
 						</div>
 					</div>
@@ -163,9 +168,9 @@
 		</div>
 		<script>
 			function cancel_function(){
-					
+
 				window.location.href = "{{URL::route('home')}}";
-			
+
 			}
 			function changePassWord(object){
 				var inputpassword = document.getElementById('password');
@@ -191,7 +196,7 @@
 					emailObject.disabled = true;
 				}
 			}
-			$(document).ready(function(){	
+			$(document).ready(function(){
 				$("#school").change(function () {
 					var sch_id = $("#school option:selected").val();
 					console.log(sch_id);

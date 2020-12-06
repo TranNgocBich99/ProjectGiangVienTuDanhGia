@@ -1,9 +1,9 @@
 *{margin:0;padding:0; }
- 
+
 label {
-    display: block; 
-    padding: 5px; 
-    position: relative; 
+    display: block;
+    padding: 5px;
+    position: relative;
     padding-left: 20px;
 }
 label input {
@@ -11,10 +11,10 @@ label input {
 }
 label span {
     border: 1px solid #ccc;
-     width: 15px; height: 15px; 
-     position: absolute; overflow: hidden; 
-     line-height: 1; text-align: center; 
-     border-radius: 100%; font-size: 10pt; 
+     width: 15px; height: 15px;
+     position: absolute; overflow: hidden;
+     line-height: 1; text-align: center;
+     border-radius: 100%; font-size: 10pt;
      left: 0; top: 50%; margin-top: -7.5px;
     }
 input:checked + span {
@@ -26,7 +26,7 @@ input:checked + span {
 
 .dg, .dg1 {
     display: flex;
-  
+
 }
 .dg1 {
     padding-left: 30px;

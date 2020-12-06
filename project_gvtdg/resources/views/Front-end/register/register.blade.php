@@ -2,6 +2,9 @@
 
 @section('content')
 		<div class="container">
+        <div class="col-sm-12" style="text-align: center">
+        <img src="{{asset('/uploads/home/img/logo.png')}}" alt="" >
+    </div>
 			<div class="row justify-content-center" style = "justify-content: center!important;display: flex;
     flex-wrap: wrap;">
 				<div class="col-md-8" style = "position: relative;
@@ -19,36 +22,36 @@
 						<div class = "card-body">
 							<form id = "validate_form" action="{{route('postDangki')}}" method="POST" enctype="multipart/form-data" >
 								<input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
-							
+
 								<div class="form-group">
 									<label>Tên người dùng</label>
 									<input class="form-control input" id = "name" type = "text" name = "name"  placeholder = "Nhập tên người dùng" value = "{{old('name')}}"></input>
 								</div>
-								
+
 								<div class="form-group">
 									<label>Email</label>
 									<input class="form-control input" id = "email" type = "email" name = "email" placeholder = "Email" value = "{{old('email')}}"></input>
-								</div>	
-								
+								</div>
+
 								<div class="form-group">
 									<label>Mật khẩu</label>
 									<input class="form-control input" id = "password" type = "password" name = "password" placeholder = "Mật khẩu" ></input>
 								</div>
-								
+
 								<div class="form-group">
 									<label>Nhập lại mật khẩu</label>
 									<input class="form-control input" id = "passwordAgain" type = "password" name = "passwordAgain" placeholder = "Nhập lại mật khẩu"  ></input>
 								</div>
-					
+
 								<div class="form-group">
 									<label style="display: inherit;">Ảnh đại diện</label>
 									<img id="avar" name = "avar" class="img-circle" style="width: 100px;" height="30%" alt="avatar" src="/uploads/profile/default.PNG" accept="image/*"/>
 									<input style = "margin-top:5px" type= "file" name = "avatar" value = "/uploads/profile/default.PNG" onchange="readURL(this);"></input>
 									<script>
 										function readURL(input) {
-												
+
 												if (input.files && input.files[0]) {
-													
+
 													var reader = new FileReader();
 
 													reader.onload = function (e) {
@@ -60,12 +63,12 @@
 													reader.readAsDataURL(input.files[0]);
 												}
 										}
-										
+
 									</script>
-								</div>	
-								
+								</div>
+
 								<div class="form-group row mb-0">
-				
+
 									<div class="save" style = "padding:15px">
 										<button type="submit" class="btn btn-primary" style = "margin-right: 20px;">
 											{{ __('Đăng ký') }}
@@ -74,7 +77,7 @@
 											{{ __('Đăng nhập') }}
 										</button>
 									</div>
-									
+
 								</div>
 							</form>
 						</div>

@@ -56,9 +56,13 @@
                 <a class="navbar-brand" href="#">QUẢN TRỊ WEBSITE</a>
             </div>
             <!-- /.navbar-header -->
-
+            <span style = "float: left!important;">
+                <img src="{{asset('/uploads/home/img/logo.png')}}" alt="" >
+                </span>
             <ul class="nav navbar-top-links navbar-right">
                 <!-- /.dropdown -->
+
+
                 <li class="dropdown" style = "float: right;">
 
 					@if(Route::has('login'))
@@ -92,7 +96,7 @@
             </ul>
             <!-- /.navbar-top-links -->
 
-            <div class="navbar-default sidebar" role="navigation" style="margin-top:0 !important">
+            <div class="navbar-default sidebar" role="navigation" style="margin-top:0 !important; background-color:">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
 
