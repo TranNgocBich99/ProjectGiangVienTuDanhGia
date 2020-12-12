@@ -39,7 +39,6 @@ class User_sem_eval extends Authenticatable
     }
 
 
-
 	public function getAllEvalOfUserSem($us_id,$se_id){
 		$data=DB::table($this->getTable())
 				->where('us_id', $us_id)

@@ -29,6 +29,7 @@
 				<th >Trường</th>
 				<th >Khoa</th>
 				<th >Chức năng</th>
+				<th >#</th>
 																		
 			</tr>
 		</thead>
@@ -64,9 +65,16 @@
 						</script>
 					</a>	
 				</td>
+				<td><a href="{!! URL::route('admin.user.statistic', $item->us_id) !!}"><button type="button" class="btn btn-primary">Xem thống kê</button></a></td>
 			</tr>
 			@endforeach
 		</tbody>
+		<button onclick="demo()" type="button">demo</button>
 		
 	</table>
+	<script>
+		function demo(){
+			show_message("sucess","Dang ki thanh cong");
+		}
+	</script>
 @endsection()

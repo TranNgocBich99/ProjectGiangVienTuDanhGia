@@ -11,6 +11,8 @@ use App\User_self_think;
 use App\User;
 use App\Evaluation;
 use App\Semester;
+use App\Year;
+use App\User_eval_year;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
@@ -52,7 +54,6 @@ class EvaluationController extends Controller
 		// 	'eva_ad_create_point.required' => 'Nhập điểm tiêu chí'
 		// ]);
 		
-		
 	}
 	//delete
 	public function getDelete($id){
@@ -89,25 +90,39 @@ class EvaluationController extends Controller
 		$user = new user;
 		$user = user::find($us_id);
 		$evaluation = new Evaluation;
-		$user_sem_eval = new User_sem_eval;
-		$se_id = $_GET['se_id'];
+		$user_eval_year = new User_eval_year;
+		$ye_id = $_GET['ye_id'];
 		$thinkOfUser=[];
 		$listEvalOfUser=[];
-		$semester = new Semester;
 		$user_self_think = new User_self_think;
-		$user_sem_val = new User_sem_eval;
-		if($se_id != -1){
-			$thinkOfUser = $user_self_think->getThinkOfUser($us_id,$se_id);
-			$listEvalOfUser = $user_sem_eval->getAllEvalOfUserSem($us_id,$se_id);
+		if($ye_id != -1){
+			$thinkOfUser = $user_self_think->getThinkOfUser($us_id,$ye_id);
+			$listEvalOfUser = $user_eval_year->getAllEvalOfUserYear($us_id,$ye_id);
 		}
 		$nhiem_vu = $evaluation->GetAllEvaluationsByCategory(6);
 		$thong_tin_hoc_phan = $evaluation->GetAllEvaluationsByCategory(7);
 		$kiem_tra_danh_gia = $evaluation->GetAllEvaluationsByCategory(8);
 		$hoat_dong_quan_tri = $evaluation->GetAllEvaluationsByCategory(9);
 		$cong_tac_ho_tro = $evaluation->GetAllEvaluationsByCategory(10);
-		return Response(view('Front-end.ajax_view.list_eval_of_semester',
+		return Response(view('Front-end.ajax_view.list_eval_of_year',
 							compact('nhiem_vu','thong_tin_hoc_phan',
 							'kiem_tra_danh_gia','hoat_dong_quan_tri',
 							'cong_tac_ho_tro','listEvalOfUser','thinkOfUser'))); 
 	}
+	
+	
+	public function ajax_get_eval_of_user(Request $request){
+		$ye_id = $_GET['ye_id'];
+		$us_id = $_GET['us_id'];
+		$listEvalOfUser=[];
+		$user_eval_year = new User_eval_year;
+		if($ye_id != -1){
+			$listEvalOfUser = $user_eval_year->getAllEvalOfUserYear($us_id,$ye_id);
+		}
+		//$encode = json_encode($listEvalOfUser,JSON_UNESCAPED_UNICODE);
+		//echo count($listEvalOfUser);
+		//exit();
+		return Response(json_encode($listEvalOfUser,JSON_UNESCAPED_UNICODE)); 
+	}
+	
 }

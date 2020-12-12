@@ -11,15 +11,15 @@ class User_self_think extends Authenticatable
 	protected $table = 'user_self_think';
 
 	protected $fillable = [
-        'id','us_id', 'se_id','	us_self_think'
+        'id','us_id', 'ye_id','	us_self_think'
     ];
 	
 	protected $primaryKey = 'id';
   
-	public function getThinkOfUser($us_id,$se_id){
+	public function getThinkOfUser($us_id,$ye_id){
 		$data = DB::table($this->getTable())
             ->where('us_id', $us_id)
-            ->where('se_id', $se_id)
+            ->where('ye_id', $ye_id)
 			->get();
         return $data;
 	}

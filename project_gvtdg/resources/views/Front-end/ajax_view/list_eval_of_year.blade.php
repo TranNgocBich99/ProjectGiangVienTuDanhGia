@@ -6,7 +6,7 @@
 	$tlt_record += count($hoat_dong_quan_tri);
 	$tlt_record += count($cong_tac_ho_tro);
 ?>
-<div class="form-group col-md-12">fs
+<div class="form-group col-md-12">
 
 	<div class="content2">
 		<div class="container">
@@ -32,7 +32,6 @@
 					<th scope="col"></th>
 					<th scope="col">Các nhiệm vụ</th>
 					<th scope="col">Thang đánh giá</th>
-
 				  </tr>
 				</thead>
 				<tbody>

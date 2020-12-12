@@ -49,5 +49,5 @@ class User extends Authenticatable
             ->get();
         return $data;
     }
-
+	
 }

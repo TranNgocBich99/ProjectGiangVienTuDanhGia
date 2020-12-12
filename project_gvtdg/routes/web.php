@@ -23,8 +23,8 @@ Route::group(['prefix'=>'teacher','middleware' => ['can:teacher']],function(){
 	Route::post('post_form',['as'=>'teacher.postForm','uses'=>'UserController@post_form']);
 });
 
-Route::get('ajax_get_semester','SemesterController@ajax_get_semester')->name('ajax_get_semester');
 Route::get('ajax_get_list_eval','EvaluationController@ajax_get_list_eval')->name('ajax_get_list_eval');
+Route::get('ajax_get_eval_of_user','EvaluationController@ajax_get_eval_of_user')->name('ajax_get_eval_of_user');
 
 
 
@@ -50,7 +50,7 @@ Route::group(['prefix'=>'admin','middleware' => ['can:admin']],function(){
 			Route::get('edit/{id}',['as'=>'admin.user.edit','uses'=>'UserController@getEdit']);
 			Route::post('edit/{id}',['as'=>'admin.user.postEdit','uses'=>'UserController@postEdit']);
 			Route::post('edit/{id}',['as'=>'admin.user.postEdit','uses'=>'UserController@postEdit']);
-
+			Route::get('statistic/{id}',['as'=>'admin.user.statistic','uses'=>'UserController@statistic']);
 	});
 
 	//-------------------------------------------School------------------------------------------

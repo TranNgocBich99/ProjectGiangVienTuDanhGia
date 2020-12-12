@@ -11,8 +11,9 @@ use App\User;
 use App\User_self_think;
 use App\Evaluation;
 use App\Science;
+use App\Year;
 use App\Semester;
-use App\User_sem_eval;
+use App\User_eval_year;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
@@ -42,23 +43,21 @@ class UserController extends Controller
 		$user = new user;
 		$user = user::find($us_id);
 		$listEvalOfUser=[];
-		$semester = new Semester;
-		$sem=null;
-		$listSemester=[];
+		$year = new Year;
+		$listYear=[];
 		$thinkOfUser=[];
+		$us_year=null;
 		if($user->status == 1){
 			$user_self_think = new User_self_think;
-			$user_sem_val = new User_sem_eval;
-			$sem = $semester->getSemesterByUserID($us_id);
-			if($sem != null && isset($sem)){
-				$listSemester = $semester->getListSeByYears($sem->se_year);
-				$thinkOfUser = $user_self_think->getThinkOfUser($us_id,$sem->se_id);
-				$listEvalOfUser = $user_sem_val->getAllEvalOfUserSem($us_id,$sem->se_id);
+			$user_eval_year = new User_eval_year;
+			$us_year = $year->getYearByUserID($us_id);
+			if($us_year != null && isset($us_year)){
+				$thinkOfUser = $user_self_think->getThinkOfUser($us_id,$us_year->ye_id);
+				$listEvalOfUser = $user_eval_year->getAllEvalOfUserYear($us_id,$us_year->ye_id);
 			}
 		}
-		$listYear = $semester->getListYears();
+		$listYear = $year->getAll();
 		$eval = new Evaluation;
-		$listEval = $eval->GetAllEvaluations();
 		$nhiem_vu = $eval->GetAllEvaluationsByCategory(6);
 		$thong_tin_hoc_phan = $eval->GetAllEvaluationsByCategory(7);
 		$kiem_tra_danh_gia = $eval->GetAllEvaluationsByCategory(8);
@@ -68,7 +67,7 @@ class UserController extends Controller
 							'thong_tin_hoc_phan',
 							'kiem_tra_danh_gia','hoat_dong_quan_tri',
 							'cong_tac_ho_tro','listEvalOfUser',
-							'listYear','sem','listSemester','thinkOfUser'));
+							'listYear','us_year','thinkOfUser'));
 	}
 	
 	public function post_form(Request $request){
@@ -82,36 +81,33 @@ class UserController extends Controller
 		$count_eval=0;
 		$this->validate($request,[
 			'year' => 'required|numeric',
-			'semester' => 'required|numeric',
 		],[
 			'year.required' => 'Hãy chọn năm học',
 			'year.numeric' => 'Hãy chọn năm học',
-			'semester.required' => 'Hãy chọn học kỳ',
-			'semester.numeric' => 'Hãy chọn học kỳ',
 		]);
-		foreach($data as $eval_id => $point) {
-			if(!is_numeric($eval_id)){
-				continue;
-			}
-			$count_eval++;
-		}
+		//foreach($data as $eval_id => $point) {
+		//	if(!is_numeric($eval_id)){
+		//		continue;
+		//	}
+		////	$count_eval++;
+		//}
 		//$this->validate($request,[
 		//	'count_record' => 'same:$count_eval',
 		//],[
 		///	'count_record.same' => 'Hãy đánh giá tất cả các tiêu chí.',
 		///]);
-		$se_id = $data["semester"];
+		$ye_id = $data["year"];
 		$us_self_think = $data['user_self_think'];;
 		$user_self_think = new User_self_think;
 		if(count($data) > 0){
-			$thinkOfUser = $user_self_think->getThinkOfUser($id,$se_id);
+			$thinkOfUser = $user_self_think->getThinkOfUser($id,$ye_id);
 			if(count($thinkOfUser)>0){
 				$update_think_us = User_self_think::find($thinkOfUser[0]->id);
 				$update_think_us->us_self_think = $us_self_think;
 				$update_think_us->save();
 			}elseif($us_self_think != null){
 				$user_self_think->us_id = $id;
-				$user_self_think->se_id = $se_id;
+				$user_self_think->ye_id = $ye_id;
 				$user_self_think->us_self_think = $us_self_think;
 				$user_self_think->save();
 			}
@@ -120,16 +116,16 @@ class UserController extends Controller
 					continue;
 				}
 				$count_eval++;
-				$user_sem_val = new User_sem_eval;
-				$us_sem_eval_ID=$user_sem_val->getRecordOfUserSemID($id,$se_id,$eval_id);
+				$user_eval_year = new User_eval_year;
+				$us_sem_eval_ID=$user_eval_year->getRecordOfUserYearID($id,$ye_id,$eval_id);
 				if($user->status==1 && count($us_sem_eval_ID)>0){
-					$user_sem_val = User_sem_eval::find($us_sem_eval_ID[0]->id);
+					$user_eval_year = User_eval_year::find($us_sem_eval_ID[0]->id);
 				}
-				$user_sem_val->us_id = $id;
-				$user_sem_val->eval_id = $eval_id;
-				$user_sem_val->se_id  = $se_id;
-				$user_sem_val->user_rate_point = $point;
-				$user_sem_val->save();	
+				$user_eval_year->us_id = $id;
+				$user_eval_year->eval_id = $eval_id;
+				$user_eval_year->ye_id  = $ye_id;
+				$user_eval_year->user_rate_point = $point;
+				$user_eval_year->save();	
 			}
 			$user->status = 1;	
 			$user->save();
@@ -276,6 +272,14 @@ class UserController extends Controller
 		return redirect()->route('admin.user.getList')->with('admin.thongbao','Sửa thành công');
 //return redirect()->route('admin.user.edit',$id)->with('thongbao','Sửa thành công');
 
+	}
+	
+	public function statistic($id){
+		$year = new Year;
+		$user = new user;
+		$user = user::find($id);
+		$listYear = $year->getAll();
+		return view('admin.user.statistic',compact('listYear','user'));
 	}
 	
 }
