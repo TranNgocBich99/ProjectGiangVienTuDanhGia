@@ -48,10 +48,13 @@ class ScienceController extends Controller
 		$data = $request->all();
 		$this->validate($request,[
 			'name' => 'required|min:3|max:255',
+			'school' => 'required|numeric',
 		],[
 			'name.required' => 'Bạn chưa nhập tên người dùng',
 			'name.min' => 'Tên người dùng phải có ít nhất 3 ký tự',
 			'name.max' => 'Tên người dùng chỉ được tối đa 255 ký tự',
+			'school.required' => 'Hãy chọn 1 đơn vị trường',
+			'school.numeric' => 'Hãy chọn 1 đơn vị trường'
 		]);
 		$science = new Science;
 		$science->sci_name = $data['name'];
