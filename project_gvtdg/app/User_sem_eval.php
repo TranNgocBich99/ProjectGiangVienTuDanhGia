@@ -58,7 +58,7 @@ class User_sem_eval extends Authenticatable
 
 
     public function getAllData($users){
-        $data = DB::table($this->table)
+        $data = DB::table($this->getTable())
             ->whereIn('us_id', $users)
             ->get();
         return $data;

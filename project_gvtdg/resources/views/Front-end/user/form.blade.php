@@ -36,6 +36,10 @@
 		margin: 0 0 0 8px;
 		text-transform: uppercase;
 	}
+	.select_year_sem{
+		justify-content: center;
+		display: flex;
+	}
 </style>
 <body >
 	<?php
@@ -59,8 +63,8 @@
 		@include('admin.thongbao')
 		<form action="{!! URL::route('teacher.postForm') !!}" method="POST" enctype="multipart/form-data">
 			<div class="select_year_sem col-md-12">
-				<div class="select_item col-md-6">
-					<div class="sub_item col-md-6" style="float: right;padding: 0;">
+				<div class="select_item">
+					<div class="sub_item" style="float: right;padding: 0;">
 						<select name="year" id="year" class="form-control" style="width: 60%;float: right;">
 							<option value = "" >Chọn năm học</option>
 							@foreach($listYear as $year)

@@ -17,7 +17,7 @@
 		}
 	?>
 	<div>
-		@include('admin.thongbao');
+		@include('admin.thongbao')
 		<table class="table table-striped table-bordered table-hover" id="dataTables-example">
 		<thead>
 			<tr>
@@ -29,7 +29,6 @@
 				<th >Trường</th>
 				<th >Khoa</th>
 				<th >Chức năng</th>
-				<th >#</th>
 																		
 			</tr>
 		</thead>
@@ -65,11 +64,10 @@
 						</script>
 					</a>	
 				</td>
-				<td><a href="{!! URL::route('admin.user.statistic', $item->us_id) !!}"><button type="button" class="btn btn-primary">Xem thống kê</button></a></td>
+				<!--<td><a href="{!! URL::route('admin.user.statistic', $item->us_id) !!}"><button type="button" class="btn btn-primary">Xem thống kê</button></a></td>-->	
 			</tr>
 			@endforeach
 		</tbody>
-		<button onclick="demo()" type="button">demo</button>
 		
 	</table>
 	<script>

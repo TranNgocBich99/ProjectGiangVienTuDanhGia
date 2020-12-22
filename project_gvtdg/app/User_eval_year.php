@@ -25,7 +25,7 @@ class User_eval_year extends Authenticatable
 	}
 	
 	public function getRecordOfUserYearID($us_id,$ye_id,$eval_id){
-		$data=DB::table($this->getTable)
+		$data=DB::table($this->getTable())
 				->where('us_id', $us_id)
 				->where('ye_id', $ye_id)
 				->where('eval_id', $eval_id)
