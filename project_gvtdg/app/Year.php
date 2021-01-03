@@ -1,8 +1,8 @@
 <?php
 
 namespace App;
-use DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Year extends Model
 {
@@ -13,9 +13,15 @@ class Year extends Model
 
 	protected $primaryKey = 'ye_id';
 
-	public function getAll() {
+	public function getPagination($sort = 'ASC'){
+		return DB::table($this->getTable())
+		                  ->orderBy('year.ye_start', $sort)
+		                  ->paginate(5, '*', 'year');
+	}
+
+	public function getAll($sort = 'ASC') {
 	    $data = DB::table($this->getTable())
-				->orderBy('year.ye_end', 'asc')	
+				->orderBy('year.ye_end', $sort)
 				->get();
 	    return $data;
 	}

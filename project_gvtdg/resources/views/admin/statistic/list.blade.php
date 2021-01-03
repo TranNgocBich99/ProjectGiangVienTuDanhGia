@@ -28,11 +28,9 @@
         @php
             $school = request()->get('school', '');
             $year = request()->get('year', '');
-            $se_id = request()->get('se_id', '');
         @endphp
         <form method="GET">
             <input type="hidden" name="year" value="{{$year}}" />
-            <input type="hidden" name="se_id" value="{{$se_id}}" />
             <label>
                 <span>Trường</span>
                 <select name="school" onchange="this.form.submit();">
@@ -64,26 +62,14 @@
                         <option @if($year == '') selected @endif value="">---Năm học---</option>
                         @if(!$listYears->isEmpty())
                             @foreach($listYears as $key => $val)
-                                <option @if($year == $val->se_year) selected @endif value="{{$val->se_year}}">{{$val->se_year}}</option>
-                            @endforeach
-                        @endif
-                    </select>
-                </label>
-
-                <label>
-                    <span>Học kỳ</span>
-                    <select name="se_id" onchange="this.form.submit();">
-                        <option @if($se_id == '') selected @endif value="">---Học kỳ---</option>
-                        @if(!$listSe->isEmpty())
-                            @foreach($listSe as $key => $val)
-                                <option @if($se_id == $val->se_id) selected @endif value="{{$val->se_id}}">{{$val->se_name}}</option>
+                                <option @if($year == $val->ye_id) selected @endif value="{{$val->ye_id}}">{{$val->ye_start}}</option>
                             @endforeach
                         @endif
                     </select>
                 </label>
             </form>
         </div>
-        @if(!empty($school) && !empty($year) && !empty($se_id))
+        @if(!empty($school) && !empty($year))
         <table class="table table-striped table-bordered table-hover" id="dataTables-example">
         <thead>
             <tr>
@@ -135,7 +121,7 @@
         </tbody>
         </table>
         @else
-            <p class="error">Bạn cần chọn trường, năm học và học kỳ</p>
+            <p class="error">Bạn cần chọn trường và năm học</p>
         @endif
     </div>
 @endsection()

@@ -85,6 +85,10 @@ Route::group(['prefix'=>'admin','middleware' => ['can:admin']],function(){
         Route::get('/', 'StatisticController@report');
     });
 
+	Route::group(['prefix'=>'report1'],function(){
+		Route::get('/', 'StatisticController@report1');
+	});
+
 
     //-------------------------------------------Evaluation------------------------------------------
 	Route::group(['prefix'=>'evaluation'],function(){
