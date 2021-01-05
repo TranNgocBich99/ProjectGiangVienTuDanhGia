@@ -49,5 +49,12 @@ class User extends Authenticatable
             ->get();
         return $data;
     }
+
+    public function getUserByScience($science) {
+        $data = DB::table('users')
+            ->where('us_sci_id', $science)
+            ->get();
+        return $data;
+    }
 	
 }

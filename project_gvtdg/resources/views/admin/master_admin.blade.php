@@ -141,6 +141,12 @@
                                 </li>
 								<li>
                                     <a href="{{ url('admin/report') }}">Xuất thống kê</a>
+                                    <li>
+                                    <a href="{{ url('admin/statisticScience') }}">Xem thống kê theo Khoa</a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('admin/reportScience') }}">Xuất thống kê theo Khoa</a>
+                                </li>
                                 </li>
                             </ul>
                         </li>

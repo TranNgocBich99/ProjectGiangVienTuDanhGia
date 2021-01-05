@@ -76,7 +76,6 @@ Route::group(['prefix'=>'admin','middleware' => ['can:admin']],function(){
 	});
 
     //statistic
-
     Route::group(['prefix'=>'statistic'],function(){
         Route::get('/', 'StatisticController@index');
     });
@@ -87,6 +86,19 @@ Route::group(['prefix'=>'admin','middleware' => ['can:admin']],function(){
 
 	Route::group(['prefix'=>'report1'],function(){
 		Route::get('/', 'StatisticController@report1');
+	});
+
+	//statistic for Science
+    Route::group(['prefix'=>'statisticScience'],function(){
+        Route::get('/', 'StatisticController@indexScience');
+    });
+
+    Route::group(['prefix'=>'reportScience'],function(){
+        Route::get('/', 'StatisticController@reportScience');
+    });
+
+	Route::group(['prefix'=>'report1Science'],function(){
+		Route::get('/', 'StatisticController@report1Science');
 	});
 
 
