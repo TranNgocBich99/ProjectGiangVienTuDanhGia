@@ -62,7 +62,7 @@
 						<div class = "form-group row">
 							@if (Route::has('password.request'))
 								<a style = "display:block"  class="btn btn-link col=md-6 offset-md-4" href="{{ route('password.request') }}">
-									{{ __('Forgot Your Password?') }}
+								<!--	{{ __('Forgot Your Password?') }} -->
 								</a>
                             @endif
 						</div>
