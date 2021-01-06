@@ -142,6 +142,9 @@
 								<li>
                                     <a href="{{ url('admin/report') }}">Xuất thống kê</a>
                                 </li>
+                                <li>
+                                    <a href="{{ url('admin/report1') }}">So sánh 5 năm liên tiếp</a>
+                                </li>
                             </ul>
                         </li>
 
