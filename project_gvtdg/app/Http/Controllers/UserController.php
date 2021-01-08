@@ -149,6 +149,7 @@ class UserController extends Controller
 			'password' => 'required|min:8|max:32',
 			'passwordAgain' => 'same:password',
 			'school' => 'required|numeric',
+			'science' => 'required|numeric',
 		],[
 			'avatar.image' => 'Chọn avartar người dùng với định dạng ảnh',
 			'avatar.mimes' => 'ảnh đại diện người dùng phải có 1 trong các định dạng jpeg,png,jpg,gif,svg',
@@ -164,7 +165,9 @@ class UserController extends Controller
 			'password.max' => 'Mật khẩu chỉ được tối đa 32 ký tự',
 			'passwordAgain.same' => 'Mật khẩu nhập lại không đúng',
 			'school.required' => 'Hãy chọn 1 đơn vị trường',
-			'school.numeric' => 'Hãy chọn 1 đơn vị trường'
+			'school.numeric' => 'Hãy chọn 1 đơn vị trường',
+			'science.required' => 'Hãy chọn 1 đơn vị khoa',
+			'science.numeric' => 'Hãy chọn 1 đơn vị khoa'
 		]);
 		$user = new User;
 		if($request->hasFile('avatar')){

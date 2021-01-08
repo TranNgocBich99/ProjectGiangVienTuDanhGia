@@ -54,7 +54,7 @@ class User_sem_eval extends Authenticatable
 				->where('eval_id', $eval_id )
 				->get();
 		return $data;
-	}
+	}	
 
 
     public function getAllData($users){

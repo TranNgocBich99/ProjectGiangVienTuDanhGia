@@ -1,4 +1,4 @@
-<option value = "-1">{!!$title!!}</option>
+<option value = "" selected>{!!$title!!}</option>
 <?php
 	if(count($data) == 0){
 		return "";

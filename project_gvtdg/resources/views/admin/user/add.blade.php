@@ -119,7 +119,7 @@
 					<div class="my_science">
 						<label class="col-lg-2 label_data">Khoa</label>
 						<select id="science" name="science" class="form-control input_data" style="width:300px">
-							<option value="-1">Chọn khoa</option>
+							<option value="" selected>Chọn khoa</option>
 						</select>
 					</div>
 				</div>	
