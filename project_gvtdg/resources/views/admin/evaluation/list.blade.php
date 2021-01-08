@@ -11,7 +11,7 @@
 		</h1>
 		
 	</div>
-		@include('admin.thongbao');
+		@include('admin.thongbao')
 		<table class="table table-striped table-bordered table-hover" id="dataTables-example">
 		<thead>
 			<tr>
